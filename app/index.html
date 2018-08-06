@@ -1,0 +1,984 @@
+<html lang="en" ng-app="indiaTours">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="IndiaTribalTours - India Tribal Tours,Trekking Tours,Best Holiday Destination">
+	<meta name="author" content="Asif Iqbal Khan">
+	<title>India Tribal Tours</title>
+
+	<!-- Favicons-->
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" type="image/x-icon" href="images/apple-touch-icon-57x57-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="images/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="images/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="images/apple-touch-icon-144x144-precomposed.png">
+
+	<!-- Google web fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Lato:300,400|Montserrat:400,400i,700,700i" rel="stylesheet">
+
+	<!-- BASE CSS -->
+	<link href="styles/base.css" rel="stylesheet">
+	<link href="styles/slider-pro.min.css" rel="stylesheet">
+	<link href="styles/date_time_picker.css" rel="stylesheet">
+
+	<!-- REVOLUTION SLIDER CSS -->
+	<link rel="stylesheet" type="text/css" href="rev-slider-files/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+	<link rel="stylesheet" type="text/css" href="rev-slider-files/fonts/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="rev-slider-files/css/settings.css">
+	<!-- REVOLUTION LAYERS STYLES -->
+	<link rel="stylesheet" type="text/css" href="styles/customStyles.css">
+
+	<!--ANGULAR JS SCRIPTS-->
+	<script src="scripts/angular.js"></script>
+    <script src="scripts/angular-animate.js"></script>
+    <script src="scripts/angular-cookies.js"></script>
+    <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-sanitize.js"></script>
+	<script src="scripts/angular-touch.js"></script>
+	<script src="scripts/ui-bootstrap.js"></script>
+	<script src="scripts/ui-bootstrap-tpls.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+	<!--FIREBASE -->
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyBWlwbEU6ITQf0mlX5lCcC71-s5031WHtQ",
+			authDomain: "indiatribaltours-db786.firebaseapp.com",
+			databaseURL: "https://indiatribaltours-db786.firebaseio.com",
+			projectId: "indiatribaltours-db786",
+			storageBucket: "indiatribaltours-db786.appspot.com",
+			messagingSenderId: "533318914793"
+		};
+		firebase.initializeApp(config);
+	</script>
+	<script src="scripts/app.js"></script>
+	<script src="scripts/controllers/homeController.js"></script>
+	<script src="scripts/controllers/authController.js"></script>
+	<script src="scripts/controllers/sharedFactory.js"></script>
+	<script src="scripts/controllers/indiaTourService.js"></script>
+	<script src="scripts/controllers/reviewController.js"></script>
+	<script src="scripts/controllers/tourController.js"></script>
+	<script src="scripts/controllers/mapController.js"></script>
+</head>
+
+<body>
+
+	<div id="preloader">
+		<div class="sk-spinner sk-spinner-wave">
+			<div class="sk-rect1"></div>
+			<div class="sk-rect2"></div>
+			<div class="sk-rect3"></div>
+			<div class="sk-rect4"></div>
+			<div class="sk-rect5"></div>
+		</div>
+	</div>
+	<div class="layer"></div>
+
+	<header ng-controller="authController">
+		<div id="top_line">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-6">
+						<i class="icon-phone"></i>
+						<strong>091-94376-78545</strong>
+						<span id="opening">
+							<i class=" icon-clock-1"></i>Mon-Sun: 8.00am - 8.00pm</span>
+					</div>
+
+					<div class="col-md-6 col-sm-6 col-xs-6">
+						<ul id="top_links">
+							<li>
+								<div class="dropdown dropdown-access">
+									<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" id="access_link">{{signUpMode == true? userObj.email : 'SignIn'}}</a>
+									<div class="dropdown-menu">
+										<div class="row">
+											<div class="col-md-6 col-sm-6 col-xs-6">
+												<a href="javascript:void(0)" class="bt_facebook" ng-click="FBSignIn()">
+													<i class="icon-facebook"></i>Facebook </a>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-6">
+												<a href="javascript:void(0)" class="bt_paypal" ng-click="GoogleSignIn()">
+													<i class="icon-paypal"></i>Google </a>
+											</div>
+										</div>
+										<div class="login-or">
+											<hr class="hr-or">
+											<span class="span-or">or</span>
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control" id="inputUsernameEmail" placeholder="Email" ng-model="user.email">
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="user.password">
+										</div>
+										<a id="forgot_pw" href="#" ng-hide="signUpMode">Forgot password?</a>
+										<input type="submit" name="Sign_in" value="Sign in" id="Sign_in" class="button_drop" ng-click="SignIn()" ng-show="!signUpMode">
+										<input type="submit" name="Sign_up" value="Sign up" id="Sign_up" class="button_drop outline" ng-click="SignUp()" ng-show="!signUpMode">
+										<input type="submit" name="Sign_out" value="Sign Out" id="Sign_out" class="button_drop outline" ng-click="SignOut()" ng-show="signUpMode">
+									</div>
+								</div>
+								<!-- End Dropdown access -->
+							</li>
+							<li id="lang_top">
+								<i class="icon-globe-1"></i>
+								<a href="#0" title="English">EN</a> -
+								<a href="#0" title="French">FR</a> -
+								<a href="#0" title="Deutsch">DE</a> -
+								<a href="#0" title="Spanish">ES</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- End row -->
+			</div>
+			<!-- End container-->
+		</div>
+		<div class="container">
+			<!-- <div ng-include="'/views/navTemplate.html'"></div> -->
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-3">
+					<div id="logo_home">
+						<h1>
+							<a href="/" title="City tours travel template">City Tours travel template</a>
+						</h1>
+					</div>
+				</div>
+				<nav class="col-md-9 col-sm-9 col-xs-9">
+					<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);">
+						<span>Menu mobile</span>
+					</a>
+					<div class="main-menu">
+						<div id="header_menu">
+							<img src="./images/logo_sticky.png" width="160" height="34" alt="India Tribal Tours" data-retina="true">
+						</div>
+						<a href="#" class="open_close" id="close_in">
+							<i class="icon_set_1_icon-77"></i>
+						</a>
+						<ul>
+							<li class="submenu">
+								<a href="/" class="show-submenu">Home
+									<i class="icon-down-open-mini"></i>
+								</a>
+							</li>
+							<li class="submenu">
+								<a href="javascript:void(0);" class="show-submenu">About India
+									<i class="icon-down-open-mini"></i>
+								</a>
+								<ul>
+									<li>
+										<a href="javascript:void(0);">Festivals of India</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">History of India</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);">Monuments & Heritage</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Amber Fort</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Agra Fort</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Charminar</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Golden Temple</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Humayun’s Tomb</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Hawa Mahal</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Jama Masjid</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Khajuraho Temples</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Konark Sun Temple</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Mehrangarh Fort</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Mysore Palace</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Qutab Minar</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Red Fort</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Taj Mahal</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="javascript:void(0);">Spiritual & Holy Destinations</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Ajmer</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Amarnath</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Bodhgaya</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Jagannath</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Haridwar</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Kedarnath</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Rishikesh</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Tirupati Balaji</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Varanasi</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Vaishno devi</a>
+											</li>
+			
+										</ul>
+									</li>
+									<li>
+										<a href="javascript:void(0);">Tribes of India</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Chattisgarh tribes</a>
+												<ul>
+													<li>
+														<a href="javascript:void(0);">Gond</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Baiga</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Muria</a>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Mizoram tribes</a>
+												<ul>
+													<li>
+														<a href="javascript:void(0);">Garos</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Khasis</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Jaintias</a>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Meghalaya tribes</a>
+												<ul>
+													<li>
+														<a href="javascript:void(0);">Garos</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Khasis</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Jaintias</a>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Naga tribes</a>
+												<ul>
+													<li>
+														<a href="javascript:void(0);">Angamis</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Aas</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Konyak</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Rengmas</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Sema</a>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Odisha tribes</a>
+												<ul>
+													<li>
+														<a href="javascript:void(0);">Bonda (Odisha)</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Gadaba (Odisha)</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Juang (Odisha)</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Kondh (Odisha)</a>
+													</li>
+													<li>
+														<a href="javascript:void(0);">Saora (Odisha)</a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="javascript:void(0);">Wildlife & Sanctuary</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Bandhavgarh National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Gir National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Jim Corbett National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Kanha National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Kaziranga National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Nanda Devi National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Nagarhole National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Periyar National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Ranthambore National Park</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Sunderbans National Park</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="javascript:void(0);" class="show-submenu">Tribal Tours
+									<i class="icon-down-open-mini"></i>
+								</a>
+								<ul>
+									<li>
+										<a href="#/view/list?state=assam&category=tribal">Assam tribal tours</a>
+									</li>
+									<li>
+										<a href="#/view/list?state=arunachal&category=tribal">Arunachal tribal tours</a>
+									</li>
+									<li>
+										<a href="#/view/list?state=chattisgarh&category=tribal">Chattisgarh tribal tours</a>
+									</li>
+									<li>
+										<a href="#/view/list?state=nagaland&category=tribal">Nagaland tribal tours</a>
+									</li>
+									<li>
+										<a href="#/view/list?state=odisha&category=tribal">Odisha tribal tours</a>
+									</li>
+									<li>
+										<a href="#/view/list?state=rajasthan&category=tribal">Rajasthan Tribal tours</a>
+									</li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="javascript:void(0);" class="show-submenu">Tour Packages
+									<i class="icon-down-open-mini"></i>
+								</a>
+								<ul>
+									<li>
+										<a href="#/view/list?state=assam">Assam tours</a>
+										<ul>
+											<li>
+												<a href="#/view/list?state=assam&category=tribal">Assam Tribal tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=assam&category=wildlife">Assam Wildlife tours</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="#/view/list?state=chattisgarh">Chattisgarh tours</a>
+										<ul>
+											<li>
+												<a href="#/view/list?state=chattisgarh&category=tribal">Chattisgarh tribal tours</a>
+											</li>
+										</ul>
+									</li>									
+									<li>
+										<a href="#/view/list?state=mp">Madhya Pradesh tours</a>
+										<ul>
+											<li>
+												<a href="#/view/list?state=mp&category=textile">Madhya Pradesh Textile tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=mp&category=heritage">Madhya Pradesh Heritage tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=mp&category=wildlife">Madhya Pradesh Wildlife tours</a>
+											</li>											
+										</ul>
+									</li>
+									<li>
+										<a href="#/view/list?state=odisha">Odisha tours</a>
+										<ul>
+											<li>
+												<a href="#/view/list?state=odisha&category=craft">Odisha Art & Craft tours</a>
+											</li>	
+											<li>
+												<a href="#/view/list?state=odisha&category=cultural">Odisha Cultural tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=odisha&category=heritage">Odisha Heritage tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=odisha&category=temple">Odisha Temple tours</a>
+											</li>																					
+											<li>
+												<a href="#/view/list?state=odisha&category=craft">Odisha Textile tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=odisha&category=tribal">Odisha Tribal tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=odisha&category=wildlife">Odisha Wildlife tours</a>
+											</li>											
+											<li>
+												<a href="#/view/list?state=odisha&category=events">Odisha Events</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=odisha&category=festival">Odisha Festivals</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="#/view/list?state=rajasthan">Rajasthan tours</a>
+										<ul>
+											<li>
+												<a href="#/view/list?state=rajasthan&category=craft">Rajasthan Art & Craft tours</a>
+											</li>											
+											<li>
+												<a href="#/view/list?state=rajasthan&category=craft">Rajasthan Textile tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=rajasthan&category=cultural">Rajasthan Cultural tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=rajasthan&category=heritage">Rajasthan Heritage tours</a>
+											</li>
+											<li>
+												<a href="#/view/list?state=rajasthan&category=tribal">Rajasthan Tribal tours</a>
+											</li>										
+										</ul>
+									</li>									
+								</ul>
+							</li>
+							<!-- <li class="submenu">
+								<a href="javascript:void(0);" class="show-submenu">Destinations
+									<i class="icon-down-open-mini"></i>
+								</a>
+								<ul>
+									<li>
+										<a href="javascript:void(0);">North India</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Delhi</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Himanchal Pradesh</a>
+											</li>											
+											<li>
+												<a href="javascript:void(0);">Jammu Kashmir</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Uttarakhand</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Uttar Pradesh</a>
+											</li>											
+										</ul>
+									</li>
+									<li>
+										<a href="javascript:void(0);">South India</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Andhra Pradesh</a>
+											</li>											
+											<li>
+												<a href="javascript:void(0);">Karnataka</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Kerela</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Tamil Nadu</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Pondicherry</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="javascript:void(0);">Central India</a>
+											<ul>
+												<li>
+													<a href="javascript:void(0);">Chattisgarh</a>
+												</li>
+												<li>
+													<a href="javascript:void(0);">Jharkhand</a>
+												</li>
+												<li>
+													<a href="javascript:void(0);">Madhya Pradesh</a>
+												</li>
+												<li>
+													<a href="javascript:void(0);">Bihar</a>
+												</li>
+											</ul>
+										</li>									
+									<li>
+										<a href="javascript:void(0);">East India</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Arunachal Pradesh</a>
+											</li>											
+											<li>
+												<a href="javascript:void(0);">West Bengal</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Odisha</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Sikkim</a>
+											</li>											
+											<li>
+												<a href="javascript:void(0);">Mizoram</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Nagaland</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="javascript:void(0);">West India</a>
+										<ul>
+											<li>
+												<a href="javascript:void(0);">Gujarat</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Rajasthan</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);">Chandigarh</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li> -->
+							<li class="submenu">
+								<a href="#/contactus" class="show-submenu">Contact Us
+									<i class="icon-down-open-mini"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- End main-menu -->
+			
+					<ul id="top_tools">
+						<li>
+							<div class="dropdown dropdown-search">
+								<a href="javascript:void(0);" class="search-overlay-menu-btn" data-toggle="dropdown">
+									<i class="icon-search"></i>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<main ng-controller="homeController">
+		<div id="rev_slider_54_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="notgeneric1" data-source="gallery"
+		 style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+			<div id="rev_slider_54_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
+				<ul>
+					<!-- Heritage Banner -->
+					<li data-index="rs-140" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-thumb="rev-slider-files/assets/100x50_notgeneric_bg1.jpg" data-rotate="0" data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+						<!-- MAIN IMAGE -->
+						<img src="rev-slider-files/assets/taj-mahal.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+						<!-- LAYERS -->
+
+						<!-- LAYER NR. 1 -->
+						<div class="tp-caption NotGeneric-Title   tp-resizeme" id="slide-140-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['50','46','36','28']" data-lineheight="['46','46','36','28']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1000,"split":"chars","split_direction":"forward","splitdelay":0.05,"speed":2000,"frame":"0","from":"x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 50px; line-height: 46px; font-weight: 700;font-family:Montserrat;">WELCOME TO INDIATRIBALTOURS </div>
+
+						<!-- LAYER NR. 2 -->
+						<div class="tp-caption NotGeneric-SubTitle   tp-resizeme" id="slide-140-layer-4" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; white-space: nowrap; font-weight: 400;font-family:Montserrat;">TOURS HERITAGE CULTURE</div>
+
+						<!-- LAYER NR. 3 -->
+						<div class="tp-caption NotGeneric-Icon   tp-resizeme" id="slide-140-layer-8" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:default;"><i class="pe-7s-compass"></i> </div>
+
+						<!-- LAYER NR. 4 -->
+						<div class="tp-caption NotGeneric-Button rev-btn " id="slide-140-layer-7" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['124','124','124','123']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]' data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1);bc:rgba(255, 255, 255, 1);bw:1 1 1 1;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]" style="z-index: 8; white-space: nowrap; font-weight: 400;font-family:Montserrat;border-color:rgba(255,255,255,0.50);border-width:1px 1px 1px 1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">Heritage & Cultural Itinerary </div>
+
+						<!-- LAYER NR. 5 -->
+						<div class="tp-caption rev-scroll-btn " id="slide-140-layer-9" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','50','50']" data-width="35" data-height="55" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"0px","delay":"","speed":"300","ease":"Linear.easeNone"}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:50px;opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 9; min-width: 35px; max-width: 35px; max-width: 55px; max-width: 55px; white-space: nowrap; font-size: px; line-height: px; font-weight: 100; color: transparent;border-color:rgba(255, 255, 255, 0.5);border-style:solid;border-width:1px 1px 1px 1px;border-radius:23px 23px 23px 23px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+							<span></span>
+						</div>
+					</li>
+					<!-- Monumental Banner -->
+					<li data-index="rs-141" data-transition="fadetotopfadefrombottom" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power3.easeInOut" data-easeout="Power3.easeInOut" data-masterspeed="1500" data-thumb="rev-slider-files/assets/100x50_notgeneric_bg5.jpg" data-rotate="0" data-saveperformance="off" data-title="Chill" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+						<!-- MAIN IMAGE -->
+						<img src="rev-slider-files/assets/mysore-palace.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+						<!-- LAYERS -->
+
+						<!-- LAYER NR. 6 -->
+						<div class="tp-caption NotGeneric-Title   tp-resizeme rs-parallaxlevel-3" id="slide-141-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['50','46','36','28']" data-lineheight="['46','46','36','28']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1000,"split":"chars","split_direction":"forward","splitdelay":0.05,"speed":2000,"frame":"0","from":"y:[100%];z:0;rZ:-35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 50px; line-height: 46px; font-weight: 700;font-family:Montserrat;">DISCOVER INCREDIBLE INDIA </div>
+
+						<!-- LAYER NR. 7 -->
+						<div class="tp-caption NotGeneric-SubTitle   tp-resizeme rs-parallaxlevel-2" id="slide-141-layer-4" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; white-space: nowrap; font-weight: 400;font-family:Montserrat;">TOURS HOTELS RESTAURANTS</div>
+
+						<!-- LAYER NR. 8 -->
+						<div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-1" id="slide-141-layer-8" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:default;"><i class="pe-7s-mouse"></i> </div>
+
+						<!-- LAYER NR. 9 -->
+						<div class="tp-caption NotGeneric-Button rev-btn " id="slide-141-layer-7" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['124','124','124','123']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]' data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1);bc:rgba(255, 255, 255, 1);bw:1 1 1 1;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]" style="z-index: 8; white-space: nowrap; font-weight: 400;font-family:Montserrat;border-color:rgba(255,255,255,0.50);border-width:1px 1px 1px 1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">Monumental Visit Itinerary</div>
+
+						<!-- LAYER NR. 10 -->
+						<div class="tp-caption rev-scroll-btn " id="slide-141-layer-9" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','50','50']" data-width="35" data-height="55" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"0px","delay":"","speed":"300","ease":"Linear.easeNone"}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:50px;opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 9; min-width: 35px; max-width: 35px; max-width: 55px; max-width: 55px; white-space: nowrap; font-size: px; line-height: px; font-weight: 100; color: transparent;border-color:rgba(255, 255, 255, 0.5);border-style:solid;border-width:1px 1px 1px 1px;border-radius:23px 23px 23px 23px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+							<span></span>
+						</div>
+
+						<!-- LAYER NR. 11 -->
+						<div class="tp-caption   tp-resizeme rs-parallaxlevel-8" id="slide-141-layer-10" data-x="['left','left','left','left']" data-hoffset="['680','680','680','680']" data-y="['top','top','top','top']" data-voffset="['632','632','632','632']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10;">
+							<div class="rs-looped rs-pendulum" data-easing="linearEaseNone" data-startdeg="-20" data-enddeg="360" data-speed="35" data-origin="50% 50%"><img src="rev-slider-files/assets/blurflake4.png" alt="" data-ww="['240px','240px','240px','240px']" data-hh="['240px','240px','240px','240px']" data-no-retina> </div>
+						</div>
+
+						<!-- LAYER NR. 12 -->
+						<div class="tp-caption   tp-resizeme rs-parallaxlevel-7" id="slide-141-layer-11" data-x="['left','left','left','left']" data-hoffset="['948','948','948','948']" data-y="['top','top','top','top']" data-voffset="['487','487','487','487']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 11;">
+							<div class="rs-looped rs-wave" data-speed="20" data-angle="0" data-radius="50px" data-origin="50% 50%"><img src="rev-slider-files/assets/blurflake3.png" alt="" data-ww="['170px','170px','170px','170px']" data-hh="['170px','170px','170px','170px']" data-no-retina> </div>
+						</div>
+
+						<!-- LAYER NR. 13 -->
+						<div class="tp-caption   tp-resizeme rs-parallaxlevel-4" id="slide-141-layer-12" data-x="['left','left','left','left']" data-hoffset="['719','719','719','719']" data-y="['top','top','top','top']" data-voffset="['200','200','200','200']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 12;">
+							<div class="rs-looped rs-rotate" data-easing="Power2.easeInOut" data-startdeg="-20" data-enddeg="360" data-speed="20" data-origin="50% 50%"><img src="rev-slider-files/assets/blurflake2.png" alt="" data-ww="['50px','50px','50px','50px']" data-hh="['51px','51px','51px','51px']" data-no-retina> </div>
+						</div>
+
+						<!-- LAYER NR. 14 -->
+						<div class="tp-caption   tp-resizeme rs-parallaxlevel-6" id="slide-141-layer-13" data-x="['left','left','left','left']" data-hoffset="['187','187','187','187']" data-y="['top','top','top','top']" data-voffset="['216','216','216','216']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="image" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 13;">
+							<div class="rs-looped rs-wave" data-speed="4" data-angle="0" data-radius="10" data-origin="50% 50%"><img src="rev-slider-files/assets/blurflake1.png" alt="" data-ww="['120px','120px','120px','120px']" data-hh="['120px','120px','120px','120px']" data-no-retina> </div>
+						</div>
+					</li>
+					<!-- Festival Banner -->
+					<li data-index="rs-144" data-transition="zoomin" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-thumb="rev-slider-files/assets/100x50_notgeneric_bg3.jpg" data-rotate="0" data-saveperformance="off" data-title="Hiking" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+						<!-- MAIN IMAGE -->
+						<img src="rev-slider-files/assets/hawa-mahal.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+						<!-- LAYERS -->
+
+						<!-- LAYER NR. 26 -->
+						<div class="tp-caption NotGeneric-Title   tp-resizeme" id="slide-144-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['50','48','36','28']" data-lineheight="['48','48','36','28']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1000,"split":"chars","split_direction":"forward","splitdelay":0.1,"speed":2000,"frame":"0","from":"x:[-105%];z:0;rX:0deg;rY:0deg;rZ:-90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 50px; line-height: 48px; font-weight: 700;font-family:Montserrat;">WANT THIS TOO? </div>
+
+						<!-- LAYER NR. 27 -->
+						<div class="tp-caption NotGeneric-SubTitle   tp-resizeme" id="slide-144-layer-4" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; white-space: nowrap; font-weight: 400;font-family:Montserrat;">GET CITYTOURS TODAY </div>
+
+						<!-- LAYER NR. 28 -->
+						<div class="tp-caption NotGeneric-Icon   tp-resizeme" id="slide-144-layer-8" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:default;"><i class="pe-7s-diamond"></i> </div>
+
+						<!-- LAYER NR. 29 -->
+						<div class="tp-caption rev-scroll-btn " id="slide-144-layer-9" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','50','50']" data-width="35" data-height="55" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"0px","delay":"","speed":"300","ease":"Linear.easeNone"}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:50px;opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; min-width: 35px; max-width: 35px; max-width: 55px; max-width: 55px; white-space: nowrap; font-size: px; line-height: px; font-weight: 100; color: transparent;border-color:rgba(255, 255, 255, 0.5);border-style:solid;border-width:1px 1px 1px 1px;border-radius:23px 23px 23px 23px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+							<span></span>
+						</div>
+
+						<!-- LAYER NR. 30 -->
+						<a class="tp-caption NotGeneric-Button rev-btn " href="https://themeforest.net/item/citytours-city-tours-tour-tickets-and-guides/10715647?ref=ansonika" target="_blank" id="slide-144-layer-10" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['124','125','124','104']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-actions='' data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":2000,"speed":300,"frame":"0","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","ease":"nothing"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1);bc:rgba(255, 255, 255, 1);bw:1 1 1 1;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]" style="z-index: 9; white-space: nowrap; font-weight: 400;font-family:Montserrat;border-color:rgba(255,255,255,0.50);border-width:1px 1px 1px 1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;text-decoration: none;">Wildlife Itinerary </a>
+					</li>
+					<!-- Wildlife Banner -->
+					<li data-index="rs-144" data-transition="zoomin" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-thumb="rev-slider-files/assets/100x50_notgeneric_bg3.jpg" data-rotate="0" data-saveperformance="off" data-title="Hiking" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+						<!-- MAIN IMAGE -->
+						<img src="rev-slider-files/assets/national-park.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+						<!-- LAYERS -->
+
+						<!-- LAYER NR. 26 -->
+						<div class="tp-caption NotGeneric-Title   tp-resizeme" id="slide-144-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['50','48','36','28']" data-lineheight="['48','48','36','28']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1000,"split":"chars","split_direction":"forward","splitdelay":0.1,"speed":2000,"frame":"0","from":"x:[-105%];z:0;rX:0deg;rY:0deg;rZ:-90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 50px; line-height: 48px; font-weight: 700;font-family:Montserrat;">SCENIC & WILD </div>
+
+						<!-- LAYER NR. 27 -->
+						<div class="tp-caption NotGeneric-SubTitle   tp-resizeme" id="slide-144-layer-4" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; white-space: nowrap; font-weight: 400;font-family:Montserrat;">SAFARI TREKKING SANCTUARY </div>
+
+						<!-- LAYER NR. 28 -->
+						<div class="tp-caption NotGeneric-Icon   tp-resizeme" id="slide-144-layer-8" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:default;"><i class="pe-7s-diamond"></i> </div>
+
+						<!-- LAYER NR. 29 -->
+						<div class="tp-caption rev-scroll-btn " id="slide-144-layer-9" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','50','50']" data-width="35" data-height="55" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"0px","delay":"","speed":"300","ease":"Linear.easeNone"}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:50px;opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; min-width: 35px; max-width: 35px; max-width: 55px; max-width: 55px; white-space: nowrap; font-size: px; line-height: px; font-weight: 100; color: transparent;border-color:rgba(255, 255, 255, 0.5);border-style:solid;border-width:1px 1px 1px 1px;border-radius:23px 23px 23px 23px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+							<span></span>
+						</div>
+
+						<!-- LAYER NR. 30 -->
+						<a class="tp-caption NotGeneric-Button rev-btn " href="https://themeforest.net/item/citytours-city-tours-tour-tickets-and-guides/10715647?ref=ansonika" target="_blank" id="slide-144-layer-10" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['124','125','124','104']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-actions='' data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":2000,"speed":300,"frame":"0","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","ease":"nothing"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1);bc:rgba(255, 255, 255, 1);bw:1 1 1 1;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]" style="z-index: 9; white-space: nowrap; font-weight: 400;font-family:Montserrat;border-color:rgba(255,255,255,0.50);border-width:1px 1px 1px 1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;text-decoration: none;">Wildlife Itinerary </a>
+					</li>
+					<!-- Festival Banner -->
+					<li data-index="rs-145" data-transition="zoomin" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-thumb="rev-slider-files/assets/100x50_notgeneric_bg3.jpg" data-rotate="0" data-saveperformance="off" data-title="Hiking" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+						<!-- MAIN IMAGE -->
+						<img src="rev-slider-files/assets/holi.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+						<!-- LAYERS -->
+
+						<!-- LAYER NR. 26 -->
+						<div class="tp-caption NotGeneric-Title   tp-resizeme" id="slide-144-layer-1" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" data-fontsize="['50','48','36','28']" data-lineheight="['48','48','36','28']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1000,"split":"chars","split_direction":"forward","splitdelay":0.1,"speed":2000,"frame":"0","from":"x:[-105%];z:0;rX:0deg;rY:0deg;rZ:-90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 50px; line-height: 48px; font-weight: 700;font-family:Montserrat;">CELEBRATION OF LIFETIME</div>
+
+						<!-- LAYER NR. 27 -->
+						<div class="tp-caption NotGeneric-SubTitle   tp-resizeme" id="slide-144-layer-4" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['52','52','52','51']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; white-space: nowrap; font-weight: 400;font-family:Montserrat;">FESTIVAL FOOD FUN</div>
+
+						<!-- LAYER NR. 28 -->
+						<div class="tp-caption NotGeneric-Icon   tp-resizeme" id="slide-144-layer-8" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 7; white-space: nowrap;cursor:default;"><i class="pe-7s-diamond"></i> </div>
+
+						<!-- LAYER NR. 29 -->
+						<div class="tp-caption rev-scroll-btn " id="slide-144-layer-9" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','50','50']" data-width="35" data-height="55" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="button" data-actions='[{"event":"click","action":"scrollbelow","offset":"0px","delay":"","speed":"300","ease":"Linear.easeNone"}]' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:50px;opacity:0;","ease":"nothing"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; min-width: 35px; max-width: 35px; max-width: 55px; max-width: 55px; white-space: nowrap; font-size: px; line-height: px; font-weight: 100; color: transparent;border-color:rgba(255, 255, 255, 0.5);border-style:solid;border-width:1px 1px 1px 1px;border-radius:23px 23px 23px 23px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+							<span></span>
+						</div>
+
+						<!-- LAYER NR. 30 -->
+						<a class="tp-caption NotGeneric-Button rev-btn " href="https://themeforest.net/item/citytours-city-tours-tour-tickets-and-guides/10715647?ref=ansonika" target="_blank" id="slide-144-layer-10" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['124','125','124','104']" data-fontweight="['400','500','500','500']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-actions='' data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":2000,"speed":300,"frame":"0","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","ease":"nothing"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1);bc:rgba(255, 255, 255, 1);bw:1 1 1 1;"}]' data-textAlign="['left','left','left','left']" data-paddingtop="[10,10,10,10]" data-paddingright="[30,30,30,30]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]" style="z-index: 9; white-space: nowrap; font-weight: 400;font-family:Montserrat;border-color:rgba(255,255,255,0.50);border-width:1px 1px 1px 1px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;text-decoration: none;">Adventure Itinerary </a>
+					</li>                    
+				</ul>
+				<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+			</div>
+		</div>
+		<div ng-view>
+			<!-- Partial page goes here -->
+		</div>
+	</main>
+
+	<!-- Footer -->
+	<footer class="revealed">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-3">
+					<h3>Need help?</h3>
+					<a href="tel://004542344599" id="phone">+91 94376 78545</a>
+					<a href="mailto:help@citytours.com" id="email_footer">help@indiatribaltours.com</a>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					<h3>About</h3>
+					<ul>
+						<li>
+							<a href="#/aboutus">About us</a>
+						</li>
+						<li>
+							<a href="#/faq">FAQ</a>
+						</li>
+						<li>
+							<a href="#">Login</a>
+						</li>
+						<li>
+							<a href="#">Register</a>
+						</li>
+						<li>
+							<a href="#/faq">Terms and condition</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					<h3>Discover</h3>
+					<ul>
+						<li>
+							<a href="#">Community blog</a>
+						</li>
+						<li>
+							<a href="#">Tour guide</a>
+						</li>
+						<li>
+							<a href="#">Wishlist</a>
+						</li>
+						<li>
+							<a href="#">Gallery</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-2 col-sm-3">
+					<h3>Settings</h3>
+					<div class="styled-select">
+						<select class="form-control" name="lang" id="lang">
+							<option value="English" selected>English</option>
+							<option value="French">French</option>
+							<option value="Spanish">Spanish</option>
+							<option value="Russian">Russian</option>
+						</select>
+					</div>
+					<div class="styled-select">
+						<select class="form-control" name="currency" id="currency">
+							<option value="USD" selected>USD</option>
+							<option value="EUR">EUR</option>
+							<option value="GBP">GBP</option>
+							<option value="RUB">RUB</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<!-- End row -->
+			<div class="row">
+				<div class="col-md-12">
+					<div id="social_footer">
+						<ul>
+							<li>
+								<a href="#">
+									<i class="icon-facebook"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-google"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-instagram"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-pinterest"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-vimeo"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-youtube-play"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-linkedin"></i>
+								</a>
+							</li>
+						</ul>
+						<p>© India Tribal Tours 2018</p>
+					</div>
+				</div>
+			</div>
+			<!-- End row -->
+		</div>
+		<!-- End container -->
+	</footer>
+
+	<div id="toTop"></div>
+
+	<!-- Search Menu -->
+	<div class="search-overlay-menu">
+		<span class="search-overlay-close">
+			<i class="icon_set_1_icon-77"></i>
+		</span>
+		<form role="search" id="searchform" method="get">
+			<input value="" name="q" type="search" placeholder="Search..." />
+			<button type="submit">
+				<i class="icon_set_1_icon-78"></i>
+			</button>
+		</form>
+	</div>
+	<script src="scripts/underscore.js"></script>
+	<!-- Common scripts -->
+	<script src="js/jquery-2.2.4.min.js"></script>
+	<script src="js/common_scripts_min.js"></script>
+	<script src="js/functions.js"></script>
+
+	<!-- Google Maps Specific -->
+	<!-- <script src="./scripts/validate.js"></script> -->
+
+	<!-- SLIDER REVOLUTION SCRIPTS  -->
+	<script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.tools.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/jquery.themepunch.revolution.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.actions.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.carousel.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.kenburn.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.migration.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.parallax.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script type="text/javascript" src="rev-slider-files/js/extensions/revolution.extension.video.min.js"></script>
+	<script src="scripts/rev-slider.js"></script>
+	<!-- <script src="js/notify_func.js"></script> -->
+
+	<!-- Map -->
+	<!-- <script src="scripts/controllers/angular-google-maps.min.js"></script> -->
+	<!-- <script src="//rawgit.com/angular-ui/angular-google-maps/2.1.5/dist/angular-google-maps.min.js"></script>
+	<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script> -->
+
+	<!-- Specific scripts -->
+	<script src="js/icheck.js"></script>
+	<script>
+		$('input').iCheck({
+			checkboxClass: 'icheckbox_square-grey',
+			radioClass: 'iradio_square-grey'
+		});
+	</script>
+	<!-- Date and time pickers -->
+	<script src="js/jquery.sliderPro.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function ($) {
+			$('#Img_carousel').sliderPro({
+				width: 960,
+				height: 500,
+				fade: true,
+				arrows: true,
+				buttons: false,
+				fullScreen: false,
+				smallSize: 500,
+				startSlide: 0,
+				mediumSize: 1000,
+				largeSize: 3000,
+				thumbnailArrows: true,
+				autoplay: false
+			});
+		});
+	</script>
+
+	<!-- Date and time pickers -->
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap-timepicker.js"></script>
+	<script>
+		$('input.date-pick').datepicker('setDate', 'today');
+		$('input.time-pick').timepicker({
+			minuteStep: 15,
+			showInpunts: false
+		})
+	</script>
+
+	<!--Review modal validation -->
+	<script src="js/validate.js"></script>
+</body>
+</html>
