@@ -100,12 +100,31 @@
                     <small>Monday to Sunday 8.00am - 8.00pm</small>
                 </div>
             </aside>
-            <!--End aside -->
-            <!-- <div class="col-lg-9 col-md-9">
-                <ui-gmap-google-map draggable="true" center="vm.map.center" zoom="vm.map.zoom" options="options">
-                    <ui-gmap-markers models="vm.markers" coords="'self'" fit='true'></ui-gmap-markers>
-                </ui-gmap-google-map>  
-            </div> -->
+            <div class="col-lg-9 col-md-9">
+                <div id="tools">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="styled-select-filters">
+                                    <select name="sort_price" id="sort_price">
+                                        <option value="all" selected>Filter Map View</option>
+                                        <option value="adventure">Adventure tours</option>
+                                        <option value="craft">Art & Crafts tours</option>
+                                        <option value="beach">Beach tours</option>
+                                        <option value="camping">Camping tours</option>
+                                        <option value="city">City tours</option>
+                                        <option value="cultural">Cultural tours</option>
+                                        <option value="heritage">Heritage tours</option>
+                                        <option value="temple">Temple tours</option>
+                                        <option value="tribal">Tribal tours</option>
+                                        <option value="wildlife">Wildlife tours</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div id="map" style="height:60%;"></div>
+            </div>
         </div>
     </div>
 </div>
+

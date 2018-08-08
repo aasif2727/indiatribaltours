@@ -264,33 +264,4 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         return newArr;
     };
-
-    /*************Map Specific*****************/
-    $scope.options = {
-        scrollwheel: true
-    };
-      
-    $scope.vm = {};
-      
-    $scope.vm.map = {
-        center: {                           
-            latitude: 43.67023,
-            longitude: -79.38676
-        },
-        zoom: 1
-    };
-      
-    $scope.vm.markers = [
-        {
-          id : 99,
-          latitude: 43.67023,
-          longitude: -79.38676
-        
-      },
-      {
-          id : 91,
-          latitude: 43.67023,
-          longitude: -80.38676
-        
-      }];
 });
