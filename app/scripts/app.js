@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-.module('indiaTours', ['ngAnimate','ngCookies','ngResource','ngRoute','ngSanitize','ngTouch','firebase','ui.bootstrap','vcRecaptcha'])
+.module('indiaTours', ['ngAnimate','ngCookies','ngResource','ngRoute','ngSanitize','ngTouch','firebase','ui.bootstrap'])
 .config(function ($routeProvider,$locationProvider) {
   $locationProvider.hashPrefix('');
   $routeProvider

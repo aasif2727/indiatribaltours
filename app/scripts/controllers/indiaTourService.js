@@ -47,7 +47,7 @@
         this.submitUserReq = function(reqObject){
             //get new key
             var newPostKey = firebase.database().ref().child('query').push().key;
-            return firebase.database().ref("query").child(newPostKey).set(reqObject);           
+            firebase.database().ref("query").child(newPostKey).set(reqObject);           
         };
 
     }]);
