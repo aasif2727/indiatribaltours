@@ -57,14 +57,14 @@ angular.module('indiaTours').controller("mapController", function ($scope,$locat
         }
     };
 
+    var mapOptions = {
+        zoom: 6,
+        center: new google.maps.LatLng(20.593684, 78.962880),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    }
+    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
     function bindMap(info){  
-        console.log(info);
-        var mapOptions = {
-            zoom: 6,
-            center: new google.maps.LatLng(20.593684, 78.962880),
-            mapTypeId: google.maps.MapTypeId.TERRAIN
-        }
-        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
         $scope.markers = []; 
         var infoWindow = new google.maps.InfoWindow(); 
         var marker = new google.maps.Marker({
