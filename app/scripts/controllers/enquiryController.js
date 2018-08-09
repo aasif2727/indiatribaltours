@@ -1,4 +1,4 @@
-angular.module('indiaTours').controller("enquiryController", function ($scope,$location, indiaTourService,sharedFactory) {
+angular.module('indiaTours').controller("enquiryController", function ($scope,$location, indiaTourService,sharedFactory,vcRecaptchaService) {
     $scope.categoryParam = $location.search()['category'];
     $scope.stateParam = $location.search()['state'];
     $scope.packageCode = $location.search()['code'];
@@ -7,6 +7,7 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
     $scope.itineraryDetail = {};
 
     $scope.submitContactReq = function(){
+        console.log($scope.user.myRecaptchaResponse);
         if($scope.user.firstName =='' ||$scope.user.firstName == undefined){
             alert('First Name required.');
             return;
@@ -37,7 +38,18 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
                 query: $scope.user.query,
                 timestamp: new Date().toString()
             };
-            indiaTourService.submitUserReq(user);
+            indiaTourService.submitUserReq(user)
+            .then(function(){
+                alert('Enquiry submitted successfully!');
+                $('#name_contact').val('');
+                $('#lastname_contact').val('');
+                $('#email_contact').val('');
+                $('#phone_contact').val('');
+                $('#message_contact').val('');
+            })
+            .catch(function(err){
+                alert(err);
+            });
         }
     };
 });
