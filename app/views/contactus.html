@@ -1,26 +1,4 @@
 <main ng-controller="enquiryController">
-    <div id="map_contact" class="contact_2"></div>
-    <!-- end map-->
-    <div id="directions">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <form action="http://maps.google.com/maps" method="get" target="_blank">
-                        <div class="input-group">
-                            <input type="text" name="saddr" placeholder="Enter your starting point" class="form-control style-2" />
-                            <input type="hidden" name="daddr" value="IRC Village, Nayapalli, Bhubaneswar 751015" />
-                            <!-- Write here your end point -->
-                            <span class="input-group-btn">
-                                <button class="btn" type="submit" value="Get directions" style="margin-left:0;">GET DIRECTIONS</button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div id="position">
         <div class="container">
             <ul>
@@ -88,8 +66,6 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Human verification</label>
-                                <input type="text" id="verify_contact" class=" form-control add_bottom_30" placeholder="Are you human? 3 + 1 =" data-ng-model="user.verification">
                                 <input type="button" value="Submit" class="btn_1" id="submit-contact" ng-click="submitContactReq();">
                             </div>
                         </div>
