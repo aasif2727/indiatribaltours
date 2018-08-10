@@ -26,6 +26,9 @@ angular.module('indiaTours').factory("sharedFactory", function ($sce) {
     };
 
     dataFactory.camelCase = function (text) {
+        if(text == undefined){
+            return;
+        }
         return text.replace(/(&)?([a-z])([a-z]{2,})(;)?/ig,
             function (all, prefix, letter, word, suffix) {
             if (prefix && suffix) {
@@ -98,7 +101,22 @@ angular.module('indiaTours').factory("sharedFactory", function ($sce) {
     };
 
     dataFactory.trimStringToFit = function (strBody,size) {
+        if(strBody == undefined){
+            return;
+        }
         return strBody.substring(0, size)+'...';
+    };
+
+    dataFactory.convertToK = function (num) {
+        if(num == undefined){
+            return;
+        }
+        if(num < 1000){
+            return num;
+        }
+        else{
+            return (num/1000).toFixed(num % 1000 != 0)+'k';
+        }
     };
 
     return dataFactory;

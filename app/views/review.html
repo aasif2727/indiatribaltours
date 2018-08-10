@@ -7,7 +7,7 @@
 				<li>
                     <a href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(stateParam)}}</a>
                 </li>
-				<li>{{util.camelCase(packageTitle)}}</li>
+				<li>{{util.camelCase(itineraryDetail.title)}}</li>
 			</ul>
 		</div>
 	</div>
@@ -24,10 +24,10 @@
 
 				<div id="single_tour_feat">
 					<ul>
-						<li><i ng-class="bindIcon()"></i>{{categoryParam}}</li>
+						<li><i ng-class="bindIcon()"></i>{{util.camelCase(categoryParam)}}</li>
 						<li><i class="icon_set_1_icon-83"></i>3 Hours</li>
 						<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
-						<li><i class="icon_set_1_icon-82"></i>{{itineraryDetail.hits}} Likes</li>
+						<li><i class="icon_set_1_icon-82"></i>{{util.convertToK(itineraryDetail.hits)}} Likes</li>
 						<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
 						<li><i class="icon_set_1_icon-97"></i>Audio guide</li>
 						<li><i class="icon_set_1_icon-29"></i>Tour guide</li>
