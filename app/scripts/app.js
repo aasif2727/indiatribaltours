@@ -23,7 +23,7 @@ angular
     })
     .when('/contactus', {
       templateUrl: 'views/contactus.html',
-      controller: 'homeController'
+      controller: 'enquiryController'
     })    
     .when('/faq', {
       templateUrl: 'views/faq.html',

@@ -44,5 +44,11 @@
             });
         };
 
+        this.submitUserReq = function(reqObject){
+            //get new key
+            var newPostKey = firebase.database().ref().child('query').push().key;
+            firebase.database().ref("query").child(newPostKey).set(reqObject);           
+        };
+
     }]);
 }());

@@ -1,4 +1,4 @@
-<main ng-controller="homeController">
+<main ng-controller="enquiryController">
     <div id="map_contact" class="contact_2"></div>
     <!-- end map-->
     <div id="directions">
@@ -53,13 +53,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control" id="name_contact" name="name_contact" placeholder="Enter Name" ng-model="user.firstName">
+                                    <input type="text" class="form-control" id="name_contact" name="name_contact" placeholder="Enter Name" data-ng-model="user.firstName">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" id="lastname_contact" name="lastname_contact" placeholder="Enter Last Name" ng-model="user.lastName">
+                                    <input type="text" class="form-control" id="lastname_contact" name="lastname_contact" placeholder="Enter Last Name" data-ng-model="user.lastName">
                                 </div>
                             </div>
                         </div>
@@ -68,13 +68,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" id="email_contact" name="email_contact" class="form-control" placeholder="Enter Email" ng-model="user.email">
+                                    <input type="email" id="email_contact" name="email_contact" class="form-control" placeholder="Enter Email" data-ng-model="user.email">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input type="text" id="phone_contact" name="phone_contact" class="form-control" placeholder="Enter Phone number" ng-model="user.phone">
+                                    <input type="text" id="phone_contact" name="phone_contact" class="form-control" placeholder="Enter Phone number" data-ng-model="user.phone">
                                 </div>
                             </div>
                         </div>
@@ -82,15 +82,15 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Message</label>
-                                    <textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="Write your message" style="height:200px;" ng-model="user.query"></textarea>
+                                    <textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="Write your message" style="height:200px;" data-ng-model="user.query"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Human verification</label>
-                                <input type="text" id="verify_contact" class=" form-control add_bottom_30" placeholder="Are you human? 3 + 1 =" ng-model="user.verification">
-                                <input type="submit" value="Submit" class="btn_1" id="submit-contact" ng-click="submitContactReq()">
+                                <input type="text" id="verify_contact" class=" form-control add_bottom_30" placeholder="Are you human? 3 + 1 =" data-ng-model="user.verification">
+                                <input type="button" value="Submit" class="btn_1" id="submit-contact" ng-click="submitContactReq();">
                             </div>
                         </div>
                     </form>
@@ -101,7 +101,7 @@
             <div class="col-md-4 col-sm-4">
                 <div class="box_style_1">
                     <span class="tape"></span>
-                    <h4>Address
+                    <h4>India Address:
                         <span>
                             <i class="icon-pin pull-right"></i>
                         </span>
@@ -109,21 +109,21 @@
                     <p>
                         IRC Village, Nayapalli, 751015 (Odisha)
                     </p>
-                    <hr>
-                    <h4>Help center
-                        <span>
-                            <i class="icon-help pull-right"></i>
-                        </span>
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie.
-                    </p>
                     <ul id="contact-info">
                         <li>+ 91 (94376) 78545 / + 91 (674) 8093 3402</li>
-                        <li>
-                            <a href="#">info@indiatribaltours.com</a>
-                        </li>
+                        <li style="color:darkturquoise;"><a href="mailto:info@indiatribaltours.com">info@indiatribaltours.com</a></li>
+                        <li style="color:darkturquoise;"><a href="mailto:indiatribaltour@gmail.com">indiatribaltour@gmail.com</a></li>
+                        <li style="color:darkturquoise;"><a href="mailto:advholiday@yahoo.co.in">advholiday@yahoo.co.in</a></li>
                     </ul>
+                    <hr>
+                    <h4>France Contact:
+                        <span>
+                            <i class="icon-pin pull-right"></i>
+                        </span>
+                    </h4>
+                    <p><span style="color:darkgoldenrod;">Snafu Mascolo</span> <br/>Email: <a href="mailto:snafuwowko@gmail.com">snafuwowko@gmail.com</a></p>
+                    <p><span style="color:darkgoldenrod;">Jean Mascolo</span> <br/>Email: <a href="mailto:jeannemascolo@gmail.com">jeannemascolo@gmail.com</a></p>
+                    <p><span style="color:darkgoldenrod;">Bruno Venin</span> <br/>Email: <a href="mailto:b.venin@yahoo.fr">b.venin@yahoo.fr</a></p>
                 </div>
                 <div class="box_style_4">
                     <i class="icon_set_1_icon-57"></i>

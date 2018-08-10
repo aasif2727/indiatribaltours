@@ -2,10 +2,6 @@ angular.module('indiaTours').controller("reviewController", function ($scope,$lo
     $scope.categoryParam = $location.search()['category'];
     $scope.stateParam = $location.search()['state'];
     $scope.packageCode = $location.search()['code'];
-    $scope.tourlistItems = [];
-    $scope.itineraries = [];
-    $scope.itineraryCount = {};
-    $scope.chunkData;
     $scope._ = _;
     $scope.util = sharedFactory;
     $scope.itineraryDetail = {};
