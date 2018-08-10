@@ -32,5 +32,17 @@
             return $firebaseObject(dbRef);
         };
 
+        this.updateItineraryHits = function(stateName,code){
+            var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
+            dbRef.once('value', function(snapshot) {
+                if (snapshot.hasChild("hits")) {
+                    dbRef.update({"hits": snapshot.val().hits + 1});
+                }
+                else{
+                    dbRef.update({"hits": 1});
+                }
+            });
+        };
+
     }]);
 }());
