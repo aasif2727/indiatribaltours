@@ -2809,7 +2809,7 @@ ul.list_order li span {
 	width: 100%;
 	overflow: hidden;
 	height: 40px;
-	background: #434343 url(../img/down_arrow_select.png) no-repeat right center;
+	background: #434343 url(../images/down_arrow_select.png) no-repeat right center;
 	border: none;
 	margin-bottom: 15px;
 	-webkit-border-radius: 3px;
@@ -2846,7 +2846,7 @@ ul.list_order li span {
 	width: 100%;
 	overflow: hidden;
 	height: 34px;
-	background: #fff url(../img/down_arrow_select_filters.png) no-repeat right center;
+	background: #fff url(../images/down_arrow_select_filters.png) no-repeat right center;
 	border: none;
 	margin: 0;
 	padding: 0;

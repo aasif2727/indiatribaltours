@@ -47,7 +47,7 @@
 						<p style="color:orange;font-weight:bold">{{itineraryDetail.destinations}}</p>
 						<hr>
 						<h5>Itinerary:</h5>
-						<p ng-repeat="daywise in itineraryDetail.daywise">{{daywise}}</p>
+						<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:orange;">Day - {{$index +1}}: </span>{{daywise}}</p>
 					</div>
 				</div>
 				<hr>
