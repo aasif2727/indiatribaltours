@@ -1,10 +1,11 @@
-.tp-caption.NotGeneric-Title,
-.NotGeneric-Title {
+.tp-caption.Travel-BigCaption,
+.Travel-BigCaption {
     color: rgba(255, 255, 255, 1.00);
-    font-size: 70px;
-    line-height: 70px;
-    font-weight: 800;
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: 700;
     font-style: normal;
+    text-transform: uppercase;
     text-decoration: none;
     background-color: transparent;
     border-color: transparent;
@@ -13,72 +14,53 @@
     border-radius: 0 0 0 0px
 }
 
-.tp-caption.NotGeneric-SubTitle,
-.NotGeneric-SubTitle {
+.tp-caption.Travel-SmallCaption,
+.Travel-SmallCaption {
     color: rgba(255, 255, 255, 1.00);
-    font-size: 13px;
-    line-height: 20px;
-    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 400;
+    font-family: "Lato";
     font-style: normal;
     text-decoration: none;
     background-color: transparent;
     border-color: transparent;
     border-style: none;
     border-width: 0px;
-    border-radius: 0 0 0 0px;
-    letter-spacing: 4px
+    border-radius: 0 0 0 0px
 }
+/********************************/
+.hermes.tp-bullets {}
 
-.tp-caption.NotGeneric-Icon,
-.NotGeneric-Icon {
-    color: rgba(255, 255, 255, 1.00);
-    font-size: 30px;
-    line-height: 30px;
-    font-weight: 400;
-    font-style: normal;
-    text-decoration: none;
+.hermes .tp-bullet {
+    overflow: hidden;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
     background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(255, 255, 255, 0);
-    border-style: solid;
-    border-width: 0px;
-    border-radius: 0px 0px 0px 0px;
-    letter-spacing: 3px
+    box-shadow: inset 0 0 0 2px rgb(255, 255, 255);
+    -webkit-transition: background 0.3s ease;
+    transition: background 0.3s ease;
+    position: absolute
 }
 
-.tp-caption.NotGeneric-Button,
-.NotGeneric-Button {
-    color: rgba(255, 255, 255, 1.00);
-    font-size: 14px;
-    line-height: 14px;
-    font-weight: 500;
-    font-style: normal;
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(255, 255, 255, 0.50);
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0px 0px 0px 0px;
-    letter-spacing: 3px
+.hermes .tp-bullet:hover {
+    background-color: rgba(0, 0, 0, 0.21)
 }
 
-.tp-caption.NotGeneric-Button:hover,
-.NotGeneric-Button:hover {
-    color: rgba(255, 255, 255, 1.00);
-    text-decoration: none;
-    background-color: transparent;
-    border-color: rgba(255, 255, 255, 1.00);
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0px 0px 0px 0px;
-    cursor: pointer
-}
-
-/**************************/
-.like-empty{
-    font-size: 1.5em;
+.hermes .tp-bullet:after {
+    content: ' ';
     position: absolute;
-    margin-top: -180px; 
-    margin-left: 255px;
-    color: white;
-    cursor: pointer;
+    bottom: 0;
+    height: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 1px rgb(255, 255, 255);
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease
+}
+
+.hermes .tp-bullet.selected:after {
+    height: 100%
 }
