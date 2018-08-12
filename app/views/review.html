@@ -18,7 +18,7 @@
 	</div>
 	<!-- End Map -->
 
-	<div class="container margin_60">
+	<div class="container margin_15">
 		<div class="row">
 			<div class="col-md-8" id="single_tour_desc">
 
@@ -40,26 +40,26 @@
 
 				<div class="row">
 					<div class="col-md-12">
-						<h5>{{itineraryDetail.title}}</h5>
+						<h5 style="font-weight:bold;color:black;">{{itineraryDetail.title}}</h5>
 						<p ng-repeat="description in itineraryDetail.description">{{description}}</p>
 						<hr>
-						<h5>Destination Covered</h5>
+						<h5 style="font-weight:bold;color:black;">Destination Covered</h5>
 						<p style="color:orange;font-weight:bold">{{itineraryDetail.destinations}}</p>
 						<hr>
-						<h5>Itinerary:</h5>
+						<h5 style="font-weight:bold;color:black;">Itinerary:</h5>
 						<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:orange;">Day - {{$index +1}}: </span>{{daywise}}</p>
 					</div>
 				</div>
 				<hr>
 				<div class="row" >
 					<div class="col-md-6 col-sm-6">
-						<h5>What's Included:</h5>
+						<h5 style="font-weight:bold;color:black;">What's Included:</h5>
 						<ul class="list_ok" ng-repeat="inclusions in itineraryDetail.what_included">
 							<li>{{inclusions}}</li>
 						</ul>
 					</div>
 					<div class="col-md-6 col-sm-6">
-						<h5>What's Not Included:</h5>
+						<h5 style="font-weight:bold;color:black;">What's Not Included:</h5>
 						<ul class="list_ok" ng-repeat="exclusions in itineraryDetail.what_excluded">
 							<li>{{exclusions}}</li>
 						</ul>

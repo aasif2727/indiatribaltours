@@ -1,0 +1,30 @@
+<div ng-controller="tourController">
+	<div id="position">
+		<div class="container">
+			<ul>
+				<li><a href="/">Home</a>
+				</li>
+				<li>{{util.camelCase(packageCode)}}</li>
+			</ul>
+		</div>
+	</div>
+	<!-- End Position -->
+
+	<div class="container margin_15">
+		<div class="row">
+			<div class="col-md-12 col-sm-12" id="single_tour_desc">
+				<div class="row">
+					<div class="col-md-12">
+						<h5 style="font-weight:bold;color:black;">{{destinationDetail.name}} ({{destinationDetail.state}})</h5>
+						<p ng-repeat="description in destinationDetail.description">{{description}}</p>
+						<hr>
+						<h5>Note:</h5>
+						<p ng-repeat="note in destinationDetail.note">{{note}}</p>
+					</div>
+				</div>
+				<hr>		
+			</div>
+		</div>
+	</div>
+	<div id="overlay"></div>
+</div>

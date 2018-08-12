@@ -32,6 +32,11 @@
             return $firebaseObject(dbRef);
         };
 
+        this.getDestinationObjectByCode = function(category,code){
+            var dbRef = firebase.database().ref("destinations/"+ category + "/" + code);
+            return $firebaseObject(dbRef);
+        };
+
         this.updateItineraryHits = function(stateName,code){
             var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
             dbRef.once('value', function(snapshot) {

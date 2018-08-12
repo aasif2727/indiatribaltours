@@ -44,7 +44,11 @@ angular
     .when('/review/itinerary', {
       templateUrl: 'views/review.html',
       controller: 'reviewController'
-    })        
+    }) 
+    .when('/review/destination', {
+      templateUrl: 'views/detailview.html',
+      controller: 'reviewController'
+    })         
     .otherwise({
       redirectTo: '/'
     });

@@ -5,13 +5,21 @@ angular.module('indiaTours').controller("reviewController", function ($scope,$lo
     $scope._ = _;
     $scope.util = sharedFactory;
     $scope.itineraryDetail = {};
+    $scope.destinationDetail = {};
     bindItineraryDetails($scope.stateParam,$scope.packageCode);
+    bindDestinationDetails($scope.categoryParam, $scope.packageCode);
     /*********Bind Itinerary Details**************/
     function bindItineraryDetails(_state,_code){
         if((_state != undefined && _state != null) && (_code != undefined && _code != null)){
             $scope.itineraryDetail = indiaTourService.getTourObjectByState(_state,_code);
             //update page-hits
             indiaTourService.updateItineraryHits(_state,_code);
+        }
+    };
+
+    function bindDestinationDetails(_category,_code){
+        if((_category != undefined && _category != null) && (_code != undefined && _code != null)){
+            $scope.destinationDetail = indiaTourService.getDestinationObjectByCode(_category,_code);
         }
     };
 
