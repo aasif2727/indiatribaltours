@@ -264,4 +264,15 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         return newArr;
     };
+
+    $scope.updateLike = function(itineraryCode){
+        var _email = localStorage.getItem('email');
+        var _signUpMode = localStorage.getItem('signUpMode');
+        if(_email != undefined && (_signUpMode != undefined && _signUpMode == 'true')){
+            alert(itineraryCode);
+        }
+        else{
+            alert('Please log-in!');
+        }
+    };
 });

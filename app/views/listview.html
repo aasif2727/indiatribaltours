@@ -147,13 +147,16 @@
                 <div class="strip_all_tour_list wow fadeIn tour_container" ng-repeat="itinerary in itineraries | limitTo:120">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4">
-                            <div class="img_list">
+                            <div class="img_list" style="border-color:green;">
                                 <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam == undefined?itinerary.package_type: categoryParam }}&title={{itinerary.package_code}}&code={{itinerary.code}}">
                                     <img src="{{itinerary.thumbImg}}" alt="Image">
                                     <div class="short_info">
                                         <i class="icon_set_1_icon-30"></i>{{util.camelCase(stateParam)}} {{itinerary.category}} 
                                     </div>
-                                </a>
+                                </a>     
+                                <div class="heart">
+                                    <a ng-click="updateLike(itinerary.code)"><i class="icon_set_1_icon-82"></i></a>
+                                </div>                      
                             </div>
                         </div>
                         <div class="clearfix visible-xs-block"></div>
@@ -240,10 +243,29 @@
     </div>
 </div>
 <style>
-    p {
-        margin: 0 0 5px 0;
-    }
-    .tour_container{
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
-    }
+p {
+    margin: 0 0 5px 0;
+}
+.tour_container{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
+}
+.heart {
+    position: absolute;
+	margin-right: 5px;
+	margin-top: 5px;
+	width: 90%;
+    padding-top: 5px;
+    padding-right: 5px;
+	color: #fff;
+	font-size: 22px;
+	display: inline-block;
+	vertical-align:middle;
+	font-weight: normal;
+    font-style: normal;
+}
+.heart a{
+    text-decoration:none;
+    color: #fff;
+    cursor: pointer;
+}
 </style>
