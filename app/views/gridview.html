@@ -155,6 +155,9 @@
                                         <i class="icon_set_1_icon-44"></i>{{util.camelCase(stateParam)}} {{itinerary.category}}</span>
                                     </div>
                                 </a>
+                                <div class="heart">
+                                    <a ng-click="updateLike(itinerary.code)"><i class="icon_set_1_icon-82"></i></a>
+                                </div>
                             </div>
                             <div class="tour_title">
                                 <h3><strong>{{itinerary.title}}</strong></h3>
@@ -172,7 +175,26 @@
     </div>
 </div>
 <style>
-    .tour_container{
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
-    }
+.tour_container{
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
+}
+.heart {
+    position: absolute;
+	margin-left: 365px;
+	margin-top: -265px;
+	width: 90%;
+    padding-top: 5px;
+    padding-right: 5px;
+	color: #fff;
+	font-size: 25px;
+	display: inline-block;
+	vertical-align:middle;
+	font-weight: normal;
+    font-style: normal;
+}
+.heart a{
+    text-decoration:none;
+    color: #fff;
+    cursor: pointer;
+}
 </style>
