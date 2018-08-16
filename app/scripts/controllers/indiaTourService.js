@@ -49,6 +49,18 @@
             });
         };
 
+        this.updateItineraryLikes = function(stateName,code){
+            var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
+            dbRef.once('value', function(snapshot) {
+                if (snapshot.hasChild("likes")) {
+                    dbRef.update({"likes": snapshot.val().hits + 1});
+                }
+                else{
+                    dbRef.update({"likes": 1});
+                }
+            });
+        };
+
         this.submitUserReq = function(reqObject){
             //get new key
             var newPostKey = firebase.database().ref().child('query').push().key;

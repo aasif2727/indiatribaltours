@@ -268,8 +268,9 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
     $scope.updateLike = function(itineraryCode){
         var _email = localStorage.getItem('email');
         var _signUpMode = localStorage.getItem('signUpMode');
-        if(_email != undefined && (_signUpMode != undefined && _signUpMode == 'true')){
-            alert(itineraryCode);
+        if(_email != undefined && (_signUpMode != undefined && _signUpMode == 'true') && $scope.stateParam != undefined){
+            //update page-likes
+            indiaTourService.updateItineraryLikes($scope.stateParam,itineraryCode);
         }
         else{
             alert('Please log-in!');
