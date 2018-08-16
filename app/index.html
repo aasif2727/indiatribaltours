@@ -841,7 +841,7 @@
 	$(document).ready(function(){
 		$('ul#navList li a').click(function(e){ 
 			var _isPanelVisible = $('#sidePanel').hasClass('layer-is-visible');
-			if(_isPanelVisible){
+			if(_isPanelVisible && e.currentTarget.className != 'show-submenu'){
 				$('#sidePanel').removeClass('layer-is-visible');
 				$('#toggleCloseBtn').removeClass('active');
 				$('div.main-menu').removeClass('show');
