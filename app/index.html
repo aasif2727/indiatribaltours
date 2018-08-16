@@ -78,7 +78,7 @@
 			<div class="sk-rect5"></div>
 		</div>
 	</div>
-	<div class="layer"></div>
+	<div class="layer" id="sidePanel"></div>
 
 	<header ng-controller="authController">
 		<div id="top_line">
@@ -150,7 +150,7 @@
 					</div>
 				</div>
 				<nav class="col-md-9 col-sm-9 col-xs-9">
-					<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);">
+					<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" id="toggleCloseBtn">
 						<span>Menu mobile</span>
 					</a>
 					<div class="main-menu">
@@ -160,7 +160,7 @@
 						<a href="#" class="open_close" id="close_in">
 							<i class="icon_set_1_icon-77"></i>
 						</a>
-						<ul>
+						<ul id="navList">
 							<li class="submenu">
 								<a href="/" class="show-submenu">Home
 									<i class="icon-down-open-mini"></i>
@@ -832,11 +832,22 @@
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/bootstrap-timepicker.js"></script>
 	<script>
-		$('input.date-pick').datepicker('setDate', 'today');
-		$('input.time-pick').timepicker({
-			minuteStep: 15,
-			showInpunts: false
-		})
+	$('input.date-pick').datepicker('setDate', 'today');
+	$('input.time-pick').timepicker({
+		minuteStep: 15,
+		showInpunts: false
+	})
+	/*******Toggle side-panel window in mobile view*******/
+	$(document).ready(function(){
+		$('ul#navList li a').click(function(e){ 
+			var _isPanelVisible = $('#sidePanel').hasClass('layer-is-visible');
+			if(_isPanelVisible){
+				$('#sidePanel').removeClass('layer-is-visible');
+				$('#toggleCloseBtn').removeClass('active');
+				$('div.main-menu').removeClass('show');
+			}
+		});
+	});
 	</script>
 </body>
 </html>
