@@ -119,5 +119,13 @@ angular.module('indiaTours').factory("sharedFactory", function ($sce) {
         }
     };
 
+    dataFactory.formatDuration = function(_actualDuration){
+        if(_actualDuration == undefined){
+            return;
+        }
+        var arr = _actualDuration.split(' ');
+        return arr[0] + arr[1].substr(0,1).toUpperCase() + ' ' + arr[2] + ' ' + arr[3] + arr[4].substr(0,1).toUpperCase();
+    };
+
     return dataFactory;
 });
