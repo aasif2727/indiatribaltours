@@ -13,11 +13,6 @@
 	</div>
 	<!-- End Position -->
 
-	<div class="collapse" id="collapseMap">
-		<div id="map" class="map"></div>
-	</div>
-	<!-- End Map -->
-
 	<div class="container margin_15">
 		<div class="row">
 			<div class="col-md-8" id="single_tour_desc">
@@ -34,20 +29,16 @@
 					</ul>
 				</div>
 
-				<p class="visible-sm visible-xs"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
-				</p>
-				<!-- Map button for tablets/mobiles -->
-
 				<div class="row">
 					<div class="col-md-12">
 						<h5 style="font-weight:bold;color:black;">{{itineraryDetail.title}}</h5>
 						<p ng-repeat="description in itineraryDetail.description">{{description}}</p>
 						<hr>
 						<h5 style="font-weight:bold;color:black;">Destination Covered</h5>
-						<p style="color:orange;font-weight:bold">{{itineraryDetail.destinations}}</p>
+						<p style="color:#e04f67;font-weight:bold">{{itineraryDetail.destinations}}</p>
 						<hr>
 						<h5 style="font-weight:bold;color:black;">Itinerary:</h5>
-						<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:orange;">Day - {{$index +1}}: </span>{{daywise}}</p>
+						<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:#e04f67;">Day - {{$index +1}}: </span>{{daywise}}</p>
 					</div>
 				</div>
 				<hr>
@@ -70,9 +61,6 @@
 			<!--End  single_tour_desc-->
 
 			<aside class="col-md-4" id="sidebar" style="z-index:999">
-				<p class="hidden-sm hidden-xs">
-					<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
-				</p>
 				<div class="theiaStickySidebar">
 					<div class="box_style_1 expose" id="booking_box">
 						<h3 class="inner">- Booking -</h3>
