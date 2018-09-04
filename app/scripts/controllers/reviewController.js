@@ -2,12 +2,14 @@ angular.module('indiaTours').controller("reviewController", function ($scope,$lo
     $scope.categoryParam = $location.search()['category'];
     $scope.stateParam = $location.search()['state'];
     $scope.packageCode = $location.search()['code'];
+    $scope.regionParam = $location.search()['region'];
     $scope._ = _;
     $scope.util = sharedFactory;
     $scope.itineraryDetail = {};
     $scope.destinationDetail = {};
     bindItineraryDetails($scope.stateParam,$scope.packageCode);
     bindDestinationDetails($scope.categoryParam, $scope.packageCode);
+    bindStateDetails($scope.regionParam,$scope.stateParam);
     /*********Bind Itinerary Details**************/
     function bindItineraryDetails(_state,_code){
         if((_state != undefined && _state != null) && (_code != undefined && _code != null)){
@@ -20,6 +22,12 @@ angular.module('indiaTours').controller("reviewController", function ($scope,$lo
     function bindDestinationDetails(_category,_code){
         if((_category != undefined && _category != null) && (_code != undefined && _code != null)){
             $scope.destinationDetail = indiaTourService.getDestinationObjectByCode(_category,_code);
+        }
+    };
+
+    function bindStateDetails(_region,_state){
+        if((_region != undefined && _region != null) && (_state != undefined && _state != null)){
+            $scope.stateDetail = indiaTourService.getStateObjectByCode(_region,_state);
         }
     };
 

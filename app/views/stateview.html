@@ -1,0 +1,30 @@
+<div ng-controller="reviewController">
+	<div id="position">
+		<div class="container">
+			<ul>
+				<li><a href="/">Home</a>
+				</li>
+				<li>{{util.camelCase(packageCode)}}</li>
+			</ul>
+		</div>
+	</div>
+	<!-- End Position -->
+
+	<div class="container margin_15">
+		<div class="row">
+			<div class="col-md-12 col-sm-12" id="single_tour_desc">
+				<div class="row">
+					<div class="col-md-12">
+						<h5 style="font-weight:bold;color:black;">Region : {{stateDetail.region}} ({{stateDetail.code}})</h5>
+						<p ng-repeat="history in stateDetail.history">{{history}}</p>
+						<hr>
+						<h5 style="font-weight:bold;color:black;">Tribes of Odisha:</h5>
+						<p ng-repeat="history in stateDetail.history">{{history}}</p>
+					</div>
+				</div>
+				<hr>		
+			</div>
+		</div>
+	</div>
+	<div id="overlay"></div>
+</div>

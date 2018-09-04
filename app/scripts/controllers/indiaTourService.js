@@ -37,6 +37,11 @@
             return $firebaseObject(dbRef);
         };
 
+        this.getStateObjectByCode = function(region,state){
+            var dbRef = firebase.database().ref("states/"+ state);
+            return $firebaseObject(dbRef);
+        };
+
         this.updateItineraryHits = function(stateName,code){
             var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
             dbRef.once('value', function(snapshot) {

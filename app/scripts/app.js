@@ -41,6 +41,10 @@ angular
       templateUrl: 'views/mapview.html',
       controller: 'mapController'
     }) 
+    .when('/review', {
+      templateUrl: 'views/stateview.html',
+      controller: 'reviewController'
+    })   
     .when('/review/itinerary', {
       templateUrl: 'views/review.html',
       controller: 'reviewController'
