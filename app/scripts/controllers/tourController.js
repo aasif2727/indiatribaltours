@@ -11,6 +11,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
     $scope._ = _;
     $scope.util = sharedFactory;
     $scope.events = [];
+    $scope.region = getRegion();
     /*Get routePath details*/
     var url = $location.path().split('/');
     $scope.firstParameter = url[2];
@@ -274,6 +275,25 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         else{
             alert('Please log-in!');
+            return;
         }
+    };
+
+    function getRegion(){
+        if($scope.stateParam == 'odisha' || $scope.stateParam == 'sikkim' || $scope.stateParam == 'mizoram' 
+            || $scope.stateParam == 'nagaland' || $scope.stateParam == 'assam')
+            return 'east';
+        if($scope.stateParam == 'gujarat' || $scope.stateParam == 'rajasthan' || $scope.stateParam == 'chandigarh' 
+            || $scope.stateParam == 'punjab')
+            return 'west';
+        if($scope.stateParam == 'delhi' || $scope.stateParam == 'uttarakhand' || $scope.stateParam == 'himanchal-pradesh' 
+            || $scope.stateParam == 'jammu-kashmir')
+            return 'north';
+        if($scope.stateParam == 'tamil-nadu' || $scope.stateParam == 'kerela' || $scope.stateParam == 'telangana' 
+            || $scope.stateParam == 'karnataka' || $scope.stateParam == 'maharastra' || $scope.stateParam == 'goa' 
+            || $scope.stateParam == 'puducherry')
+            return 'south';
+        else
+            return 'north';
     };
 });

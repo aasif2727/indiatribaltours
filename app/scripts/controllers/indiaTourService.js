@@ -38,6 +38,7 @@
         };
 
         this.getStateObjectByCode = function(region,state){
+            console.log(state);
             var dbRef = firebase.database().ref("states/"+ state);
             return $firebaseObject(dbRef);
         };

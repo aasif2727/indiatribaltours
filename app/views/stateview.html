@@ -4,7 +4,7 @@
 			<ul>
 				<li><a href="/">Home</a>
 				</li>
-				<li>{{util.camelCase(packageCode)}}</li>
+				<li>{{util.camelCase(stateParam)}}</li>
 			</ul>
 		</div>
 	</div>
@@ -15,16 +15,71 @@
 			<div class="col-md-12 col-sm-12" id="single_tour_desc">
 				<div class="row">
 					<div class="col-md-12">
-						<h5 style="font-weight:bold;color:black;">Region : {{stateDetail.region}} ({{stateDetail.code}})</h5>
+						<h5 style="font-weight:bold;color:black;">Region : {{stateDetail.region}} | State : {{util.camelCase(stateDetail.code)}}</h5>
 						<p ng-repeat="history in stateDetail.history">{{history}}</p>
 						<hr>
-						<h5 style="font-weight:bold;color:black;">Tribes of Odisha:</h5>
+						<h5 style="font-weight:bold;color:black;">Tribes of {{util.camelCase(stateDetail.code)}}:</h5>
 						<p ng-repeat="history in stateDetail.history">{{history}}</p>
 					</div>
 				</div>
 				<hr>		
 			</div>
 		</div>
+		<div class="gallery" id="gallery">
+			<div class="mb-3 pics animation all 2">
+				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg" alt="Card image cap">
+			</div>
+			<div class="mb-3 pics animation all 1">
+				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg" alt="Card image cap">
+			</div>
+			<div class="mb-3 pics animation all 1">
+				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg" alt="Card image cap">
+			</div>
+			<div class="mb-3 pics animation all 2">
+				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" alt="Card image cap">
+			</div>
+			<div class="mb-3 pics animation all 2">
+				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg" alt="Card image cap">
+			</div>
+			<div class="mb-3 pics animation all 1">
+				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg" alt="Card image cap">
+			</div>
+		</div>
 	</div>
 	<div id="overlay"></div>
 </div>
+<style>
+	.gallery {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+		-webkit-column-width: 33%;
+		-moz-column-width: 33%;
+		column-width: 33%; }
+	.gallery .pics {
+		-webkit-transition: all 350ms ease;
+		transition: all 350ms ease; }
+	.gallery .animation {
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		transform: scale(1); }
+
+	@media (max-width: 450px) {
+		.gallery {
+			-webkit-column-count: 1;
+			-moz-column-count: 1;
+			column-count: 1;
+			-webkit-column-width: 100%;
+			-moz-column-width: 100%;
+			column-width: 100%;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.btn.filter {
+			padding-left: 1.1rem;
+			padding-right: 1.1rem;
+		}
+	}
+</style>
+

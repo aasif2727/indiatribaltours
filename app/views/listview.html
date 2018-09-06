@@ -17,7 +17,7 @@
         <div class="row">
             <aside class="col-lg-3 col-md-3">
                 <p>
-                    <a class="btn_map" href="#/view/map?state={{stateParam}}&marker=all" data-text-original="{{stateParam}} Map View">{{stateParam}} Map View</a>
+                    <a class="btn_map" href="#/review?region={{region}}&state={{stateParam}}" data-text-original="{{stateParam}} Map View">Visit {{stateParam}}</a>
                 </p>
 
                 <div class="box_style_cat">
@@ -107,19 +107,40 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
-                                <select name="sort_price" id="sort_price">
+                                <select name="sort_price" id="state_webview">
                                     <option value="" selected>Sort by hits</option>
                                     <option value="lower">Lowest hits</option>
                                     <option value="higher">Highest hits</option>
+                                </select>
+                                <select name="sort_price" id="state_mobileview">
+                                    <option value="" selected>Filter By State</option>
+                                    <option value="assam">Assam</option>
+                                    <option value="chattisgarh">Chattisgarh</option>
+                                    <option value="madhya-pradesh">Madhya Pradesh</option>
+                                    <option value="odisha">Odisha</option>
+                                    <option value="rajasthan">Rajasthan</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
-                                <select name="sort_rating" id="sort_rating">
+                                <select name="sort_rating" id="category_webview">
                                     <option value="" selected>Sort by views</option>
                                     <option value="lower">Lowest views</option>
                                     <option value="higher">Highest views</option>
+                                </select>
+                                <select name="sort_rating" id="category_mobileview">
+                                    <option value="" selected>Filter By Category</option>
+                                    <option value="adventure">Adventure</option>
+                                    <option value="beach">Beach</option>
+                                    <option value="craft">Craft</option>
+                                    <option value="camping">Camping</option>
+                                    <option value="city">City</option>
+                                    <option value="cultural">Cultural</option>
+                                    <option value="heritage">Heritage</option>
+                                    <option value="temple">Temple</option>
+                                    <option value="tribal">Tribal</option>
+                                    <option value="wildlife">Wildlife</option>
                                 </select>
                             </div>
                         </div>
@@ -268,4 +289,46 @@ p {
     color: #fff;
     cursor: pointer;
 }
+@media screen and (max-width: 700px){
+    div.box_style_cat{
+        display:none;
+    }
+    #state_webview{
+        display:none;
+    }
+    #state_mobileview{
+        display:block;
+    }
+    #category_webview{
+        display:none;
+    }
+    #category_mobileview{
+        display:block;
+    }
+}
+@media screen and (min-width: 700px){
+    #state_webview{
+        display:block;
+    }
+    #state_mobileview{
+        display:none;
+    }
+    #category_webview{
+        display:block;
+    }
+    #category_mobileview{
+        display:none;
+    }
+}
 </style>
+<script>
+    $(document).ready(function(){
+        $('#state_mobileview').change(function(){
+            alert('hi');
+            var selectedState = $('#state_mobileview').val();
+            if(selectedState != ''){
+                window.location.href = '#/view/list?state=' + selectedState;
+            }
+        });
+    });
+</script>
