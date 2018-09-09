@@ -112,7 +112,7 @@
                                     <option value="lower">Lowest hits</option>
                                     <option value="higher">Highest hits</option>
                                 </select>
-                                <select name="sort_price" id="state_mobileview">
+                                <select name="sort_price" id="state_mobileview" ngChange="filterByState(this)" ngModel="chkState">
                                     <option value="" selected>Filter By State</option>
                                     <option value="assam">Assam</option>
                                     <option value="chattisgarh">Chattisgarh</option>
@@ -125,9 +125,9 @@
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
                                 <select name="sort_rating" id="category_webview">
-                                    <option value="" selected>Sort by views</option>
-                                    <option value="lower">Lowest views</option>
-                                    <option value="higher">Highest views</option>
+                                    <option value="" selected>Sort by likes</option>
+                                    <option value="lower">Lowest likes</option>
+                                    <option value="higher">Highest likes</option>
                                 </select>
                                 <select name="sort_rating" id="category_mobileview">
                                     <option value="" selected>Filter By Category</option>
@@ -237,7 +237,7 @@
                                                 <h4>Includes</h4>Permit, Parking, Toll tax
                                             </div>
                                         </div>
-                                    </li>
+                                    </li>                                  
                                 </ul>
                             </div>
                         </div>
@@ -246,7 +246,7 @@
                                 <div>
                                     <span class="normal_duration">{{itinerary.duration}}</span>
                                     <p>
-                                        <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam}}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1">Details</a>
+                                        <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam == undefined?itinerary.package_type: categoryParam }}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1">Details</a>
                                     </p>
                                 </div>
 
@@ -322,13 +322,12 @@ p {
 }
 </style>
 <script>
-    $(document).ready(function(){
-        $('#state_mobileview').change(function(){
-            alert('hi');
-            var selectedState = $('#state_mobileview').val();
-            if(selectedState != ''){
-                window.location.href = '#/view/list?state=' + selectedState;
-            }
-        });
-    });
+    $scope.filterByState = function(value){
+        alert('hi');
+        alert(value);
+        var selectedState = $('#state_mobileview').val();
+        if(selectedState != ''){
+            window.location.href = '#/view/list?state=' + selectedState;
+        }
+    };
 </script>

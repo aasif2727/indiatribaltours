@@ -296,4 +296,13 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         else
             return 'north';
     };
+  
+    $scope.filterByState = function(value){
+        alert('hi');
+        alert(value);
+        var selectedState = $('#state_mobileview').val();
+        if(selectedState != ''){
+            window.location.href = '#/view/list?state=' + selectedState;
+        }
+    };
 });
