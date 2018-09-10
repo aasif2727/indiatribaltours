@@ -17,34 +17,77 @@
 					<div class="col-md-12">
 						<h5 style="font-weight:bold;color:black;">Region : {{stateDetail.region}} | State : {{util.camelCase(stateDetail.code)}}</h5>
 						<p ng-repeat="history in stateDetail.history">{{history}}</p>
-						<hr>
-						<h5 style="font-weight:bold;color:black;">Tribes of {{util.camelCase(stateDetail.code)}}:</h5>
-						<p ng-repeat="history in stateDetail.history">{{history}}</p>
+					</div>
+				</div>		
+			</div>
+		</div>
+		<div class="container margin_60">
+				<div class="main_title">
+					<h2>Tourist <span>attractions</span> in {{util.camelCase(stateDetail.code)}}</h2>
+					<p>
+						Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+					</p>
+				</div>
+				<hr>
+				<div class="row magnific-gallery add_bottom_60 ">
+					<div class="col-md-3 col-sm-3" ng-repeat="place in stateDetail.places-to-visit">
+						<div class="img_wrapper_gallery">
+							<div class="img_container_gallery">
+								<a href="{{place.tmbImage}}" title="{{place.name}}"><img src="{{place.tmbImage}}" alt="Image" class="img-responsive">
+									<i class="icon-resize-full-2"></i>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
-				<hr>		
+				<!-- End row -->
+				<div class="main_title">
+					<h2>Some <span>videos</span> from travellers</h2>
+					<p>
+						Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+					</p>
+				</div>
+				<hr>
+				<div class="row  magnific">
+					<div class="col-md-3 col-sm-3">
+						<div class="img_wrapper_gallery">
+							<div class="img_container_gallery">
+								<a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><img src="img/notredame.jpg" alt="Image" class="img-responsive">
+									<i class="icon-resize-full-2"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="img_wrapper_gallery">
+							<div class="img_container_gallery">
+								<a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video" title="Video Youtube"><img src="img/senna.jpg" alt="Image" class="img-responsive">
+									<i class="icon-resize-full-2"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="img_wrapper_gallery">
+							<div class="img_container_gallery">
+								<a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><img src="img/notredame.jpg" alt="Image" class="img-responsive">
+									<i class="icon-resize-full-2"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3">
+						<div class="img_wrapper_gallery">
+							<div class="img_container_gallery">
+								<a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video" title="Video Youtube"><img src="img/senna.jpg" alt="Image" class="img-responsive">
+									<i class="icon-resize-full-2"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End row -->
 			</div>
-		</div>
-		<div class="gallery" id="gallery">
-			<div class="mb-3 pics animation all 2">
-				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg" alt="Card image cap">
-			</div>
-			<div class="mb-3 pics animation all 1">
-				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg" alt="Card image cap">
-			</div>
-			<div class="mb-3 pics animation all 1">
-				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg" alt="Card image cap">
-			</div>
-			<div class="mb-3 pics animation all 2">
-				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg" alt="Card image cap">
-			</div>
-			<div class="mb-3 pics animation all 2">
-				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg" alt="Card image cap">
-			</div>
-			<div class="mb-3 pics animation all 1">
-				<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg" alt="Card image cap">
-			</div>
-		</div>
 	</div>
 	<div id="overlay"></div>
 </div>

@@ -161,11 +161,11 @@
 							<i class="icon_set_1_icon-77"></i>
 						</a>
 						<ul id="navList">
-							<li class="submenu">
+							<li class="submenu" id="home">
 								<a href="/" class="show-submenu">Home
 									<i class="icon-down-open-mini"></i>
 								</a>
-							</li>
+							</li>							
 							<li class="submenu">
 								<a href="javascript:void(0);" class="show-submenu">About India
 									<i class="icon-down-open-mini"></i>
@@ -498,7 +498,24 @@
 												<a href="#/view/list?state=rajasthan&category=tribal">Rajasthan Tribal tours</a>
 											</li>										
 										</ul>
-									</li>								
+									</li>
+									<li>
+										<a href="#/view/list?state=sikkim">Sikkim tours</a>
+										<ul>
+											<li>
+												<a href="#/view/list?state=sikkim&category=city">Sikkim City tours</a>
+											</li>																					
+										</ul>
+									</li>
+									<li>
+										<a href="#/view/list?type=trekking">Trekking tours</a>
+									</li>
+									<li>
+										<a href="#/view/list?type=north-east-special">North East tours</a>
+									</li>
+									<li>
+										<a href="#/view/list?type=special">Special tours</a>
+									</li>																																					
 								</ul>
 							</li>
 							<li class="submenu">
@@ -602,7 +619,7 @@
 									</li>
 								</ul>
 							</li>
-							<li class="submenu">
+							<li class="submenu" id="contactus">
 								<a href="#/contactus" class="show-submenu">Contact Us
 									<i class="icon-down-open-mini"></i>
 								</a>
@@ -848,7 +865,7 @@
 	})
 	/*******Toggle side-panel window in mobile view*******/
 	$(document).ready(function(){
-		$('ul#navList li a').click(function(e){ 
+		$('ul#navList li a,li#home,li#contactus,li#trekking').click(function(e){ 
 			var _isPanelVisible = $('#sidePanel').hasClass('layer-is-visible');
 			if(_isPanelVisible && e.currentTarget.className != 'show-submenu'){
 				$('#sidePanel').removeClass('layer-is-visible');
