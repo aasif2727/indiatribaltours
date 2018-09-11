@@ -9,85 +9,50 @@
 		</div>
 	</div>
 	<!-- End Position -->
-
 	<div class="container margin_15">
 		<div class="row">
 			<div class="col-md-12 col-sm-12" id="single_tour_desc">
 				<div class="row">
 					<div class="col-md-12">
-						<h5 style="font-weight:bold;color:black;">Region : {{stateDetail.region}} | State : {{util.camelCase(stateDetail.code)}}</h5>
+						<h5 style="font-weight:bold;color:black;">{{util.camelCase(stateDetail.code)}} (Region : {{stateDetail.region}})</h5>
 						<p ng-repeat="history in stateDetail.history">{{history}}</p>
 					</div>
-				</div>		
+				</div>
 			</div>
 		</div>
-		<div class="container margin_60">
-				<div class="main_title">
-					<h2>Tourist <span>attractions</span> in {{util.camelCase(stateDetail.code)}}</h2>
-					<p>
-						Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
-					</p>
-				</div>
-				<hr>
-				<div class="row magnific-gallery add_bottom_60 ">
-					<div class="col-md-3 col-sm-3" ng-repeat="place in stateDetail.places-to-visit">
-						<div class="img_wrapper_gallery">
-							<div class="img_container_gallery">
-								<a href="{{place.tmbImage}}" title="{{place.name}}"><img src="{{place.tmbImage}}" alt="Image" class="img-responsive">
-									<i class="icon-resize-full-2"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End row -->
-				<div class="main_title">
-					<h2>Some <span>videos</span> from travellers</h2>
-					<p>
-						Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
-					</p>
-				</div>
-				<hr>
-				<div class="row  magnific">
-					<div class="col-md-3 col-sm-3">
-						<div class="img_wrapper_gallery">
-							<div class="img_container_gallery">
-								<a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><img src="img/notredame.jpg" alt="Image" class="img-responsive">
-									<i class="icon-resize-full-2"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3">
-						<div class="img_wrapper_gallery">
-							<div class="img_container_gallery">
-								<a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video" title="Video Youtube"><img src="img/senna.jpg" alt="Image" class="img-responsive">
-									<i class="icon-resize-full-2"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3">
-						<div class="img_wrapper_gallery">
-							<div class="img_container_gallery">
-								<a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><img src="img/notredame.jpg" alt="Image" class="img-responsive">
-									<i class="icon-resize-full-2"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-3">
-						<div class="img_wrapper_gallery">
-							<div class="img_container_gallery">
-								<a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video" title="Video Youtube"><img src="img/senna.jpg" alt="Image" class="img-responsive">
-									<i class="icon-resize-full-2"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End row -->
+		<hr>
+		<div class="row">
+			<div class="main_title">
+				<h2>Tourist <span>attractions</span> in {{util.camelCase(stateDetail.code)}}</h2>
 			</div>
+			<hr>
+			<div class="row magnific-gallery add_bottom_60 ">
+				<div class="col-md-3 col-sm-3" ng-repeat="place in stateDetail.attractions">
+					<div class="img_wrapper_gallery">
+						<div class="img_container_gallery">
+							<a href="javascript:void(0);" title="{{place.name}}"><img src="{{place.thumbImg}}" alt="Image" class="img-responsive">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <hr> -->
+			<!-- End row -->
+			<!-- <div class="main_title">
+				<h2>Tour <span>packages</span> for {{util.camelCase(stateDetail.code)}}</h2>
+			</div>
+			<hr>
+			<div class="row magnific-gallery add_bottom_60 ">
+				<div class="col-md-3 col-sm-3" ng-repeat="place in stateDetail.itineraries">
+					<div class="img_wrapper_gallery">
+						<div class="img_container_gallery">
+							<a href="{{place.thumbImg}}" title="{{place.name}}"><img src="{{place.thumbImg}}" alt="Image" class="img-responsive">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
 	</div>
 	<div id="overlay"></div>
 </div>
@@ -98,14 +63,19 @@
 		column-count: 3;
 		-webkit-column-width: 33%;
 		-moz-column-width: 33%;
-		column-width: 33%; }
+		column-width: 33%;
+	}
+
 	.gallery .pics {
 		-webkit-transition: all 350ms ease;
-		transition: all 350ms ease; }
+		transition: all 350ms ease;
+	}
+
 	.gallery .animation {
 		-webkit-transform: scale(1);
 		-ms-transform: scale(1);
-		transform: scale(1); }
+		transform: scale(1);
+	}
 
 	@media (max-width: 450px) {
 		.gallery {
@@ -125,4 +95,3 @@
 		}
 	}
 </style>
-

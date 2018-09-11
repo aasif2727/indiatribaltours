@@ -28,6 +28,7 @@ angular.module('indiaTours').controller("reviewController", function ($scope,$lo
     function bindStateDetails(_region,_state){
         if((_region != undefined && _region != null) && (_state != undefined && _state != null)){
             $scope.stateDetail = indiaTourService.getStateObjectByCode(_region,_state);
+            console.log($scope.stateDetail.places_to_visit);
         }
     };
 
