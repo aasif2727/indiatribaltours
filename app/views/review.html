@@ -28,32 +28,40 @@
 						<li><i class="icon_set_1_icon-29"></i>Tour guide</li>
 					</ul>
 				</div>
-
-				<div class="row">
-					<div class="col-md-12">
-						<h5 style="font-weight:bold;color:black;">{{itineraryDetail.title}}</h5>
-						<p ng-repeat="description in itineraryDetail.description">{{description}}</p>
-						<hr>
-						<h5 style="font-weight:bold;color:black;">Destination Covered</h5>
-						<p style="color:#e04f67;font-weight:bold">{{itineraryDetail.destinations}}</p>
-						<hr>
-						<h5 style="font-weight:bold;color:black;">Itinerary:</h5>
-						<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:#e04f67;">Day - {{$index +1}}: </span>{{daywise}}</p>
-					</div>
-				</div>
-				<hr>
 				<div class="row" >
-					<div class="col-md-6 col-sm-6">
-						<h5 style="font-weight:bold;color:black;">What's Included:</h5>
-						<ul class="list_ok" ng-repeat="inclusions in itineraryDetail.what_included">
-							<li>{{inclusions}}</li>
-						</ul>
-					</div>
-					<div class="col-md-6 col-sm-6">
-						<h5 style="font-weight:bold;color:black;">What's Not Included:</h5>
-						<ul class="list_ok" ng-repeat="exclusions in itineraryDetail.what_excluded">
-							<li>{{exclusions}}</li>
-						</ul>
+					<div class="col-md-12 col-sm-12">
+						<div ng-cloak="" class="tabsdemoDynamicHeight" ng-app="MyApp">
+							<md-content>
+								<md-tabs md-dynamic-height="" md-border-bottom="">
+									<md-tab label="Itinerary :">
+										<md-content class="md-padding">
+											<h5 style="font-weight:bold;color:black;">{{itineraryDetail.title}}</h5>
+											<p ng-repeat="description in itineraryDetail.description">{{description}}</p>
+											<hr>
+											<h5 style="font-weight:bold;color:black;">Destination Covered</h5>
+											<p style="color:#e04f67;font-weight:bold">{{itineraryDetail.destinations}}</p>
+											<hr>
+											<h5 style="font-weight:bold;color:black;">Itinerary:</h5>
+											<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:#e04f67;">Day - {{$index +1}}: </span>{{daywise}}</p>
+										</md-content>
+									</md-tab>
+									<md-tab label="What's Included :">
+										<md-content class="md-padding">
+											<ul class="list_ok" ng-repeat="inclusions in itineraryDetail.what_included">
+												<li>{{inclusions}}</li>
+											</ul>
+										</md-content>
+									</md-tab>
+									<md-tab label="What's Not Included :">
+										<md-content class="md-padding">
+											<ul class="list_ok" ng-repeat="exclusions in itineraryDetail.what_excluded">
+												<li>{{exclusions}}</li>
+											</ul>
+										</md-content>
+									</md-tab>
+								</md-tabs>
+							</md-content>
+						</div>	
 					</div>
 				</div>
 				<hr>				

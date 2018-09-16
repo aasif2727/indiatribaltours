@@ -13,10 +13,10 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
             $('#name_contact').css({'border-color':'red'});
             return false;
         }
-        if($('#lastname_contact').val() =='' ||$scope.user.lastName == undefined){
+        if($('#country_contact').val() =='' ||$scope.user.country == undefined){
             //alert('Last Name required.');
-            $('#lastname_contact').focus();
-            $('#lastname_contact').css({'border-color':'red'});
+            $('#country_contact').focus();
+            $('#country_contact').css({'border-color':'red'});
             return false;
         }
         if($('#email_contact').val() =='' ||$scope.user.email == undefined){
@@ -40,8 +40,8 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
         else{
             //submit user request
             var user = { 
-                fname: $scope.user.firstName,
-                lname: $scope.user.lastName,
+                name: $scope.user.firstName,
+                country: $scope.user.country,
                 email: $scope.user.email,
                 phone: $scope.user.phone,
                 query: $scope.user.query,
@@ -51,7 +51,7 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
             .then(function(){
                 alert('Enquiry submitted successfully!');
                 $('#name_contact').val('');
-                $('#lastname_contact').val('');
+                $('#country_contact').val('');
                 $('#email_contact').val('');
                 $('#phone_contact').val('');
                 $('#message_contact').val('');
