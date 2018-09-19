@@ -30,13 +30,13 @@
 				</div>
 				<div class="row" >
 					<div class="col-md-12 col-sm-12">
-						<div ng-cloak="" class="tabsdemoDynamicHeight" ng-app="MyApp">
+						<div>
 							<md-content>
 								<md-tabs md-dynamic-height="" md-border-bottom="">
 									<md-tab label="Itinerary :">
 										<md-content class="md-padding">
 											<h5 style="font-weight:bold;color:black;">{{itineraryDetail.title}}</h5>
-											<p ng-repeat="description in itineraryDetail.description">{{description}}</p>
+											<p ng-repeat="description in itineraryDetail.description" ng-bind-html="description"></p>
 											<hr>
 											<h5 style="font-weight:bold;color:black;">Destination Covered</h5>
 											<p style="color:#e04f67;font-weight:bold">{{itineraryDetail.destinations}}</p>
@@ -59,6 +59,13 @@
 											</ul>
 										</md-content>
 									</md-tab>
+									<md-tab label="Gallery :">
+										<md-content class="md-padding">
+											<ul class="list_ok" ng-repeat="exclusions in itineraryDetail.what_excluded">
+												<li>{{exclusions}}</li>
+											</ul>
+										</md-content>
+									</md-tab>
 								</md-tabs>
 							</md-content>
 						</div>	
@@ -71,36 +78,36 @@
 			<aside class="col-md-4" id="sidebar" style="z-index:999">
 				<div class="theiaStickySidebar">
 					<div class="box_style_1 expose" id="booking_box">
-						<h3 class="inner">- Booking -</h3>
+						<h3 class="inner">- Enquiry -</h3>
 						<div class="row">
-							<div class="col-md-6 col-sm-6">
+							<div class="col-md-12 col-sm-12">
 								<div class="form-group">
-									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="M d, D" type="text">
+									<label></i>Select start date:</label>
+									<!-- <input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text"> -->
+									<md-datepicker ng-model="startDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
 								</div>
 							</div>
-							<div class="col-md-6 col-sm-6">
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
 								<div class="form-group">
-									<label><i class=" icon-clock"></i> Time</label>
-									<input class="time-pick form-control" value="12:00 AM" type="text">
+									<label></i>Select end date:</label>
+									<!-- <input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text"> -->
+									<md-datepicker ng-model="endDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label>Adults</label>
-									<div class="numbers-row">
-										<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
-									</div>
+									<label>Name:</label>
+									<input type="text" placeholder="Name" id="name" class="form-control">
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label>Children</label>
-									<div class="numbers-row">
-										<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
-									</div>
+									<label>Email:</label>
+									<input type="text" placeholder="Email" id="email" class="form-control">
 								</div>
 							</div>
 						</div>
