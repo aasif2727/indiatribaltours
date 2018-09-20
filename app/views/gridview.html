@@ -109,22 +109,44 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
-                                <select name="sort_price" id="sort_price">
+                                <select name="sort_price" id="state_webview">
                                     <option value="" selected>Sort by hits</option>
                                     <option value="lower">Lowest hits</option>
                                     <option value="higher">Highest hits</option>
+                                </select>
+                                <select name="sort_price" id="state_mobileview" ng-change="filterByState()" ng-model="chkState">
+                                    <option value="" selected>Filter By State</option>
+                                    <option value="assam">Assam</option>
+                                    <option value="chattisgarh">Chattisgarh</option>
+                                    <option value="madhya-pradesh">Madhya Pradesh</option>
+                                    <option value="odisha">Odisha</option>
+                                    <option value="rajasthan">Rajasthan</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
-                                <select name="sort_rating" id="sort_rating">
-                                    <option value="" selected>Sort by views</option>
-                                    <option value="lower">Lowest views</option>
-                                    <option value="higher">Highest views</option>
+                                <select name="sort_rating" id="category_webview">
+                                    <option value="" selected>Sort by likes</option>
+                                    <option value="lower">Lowest likes</option>
+                                    <option value="higher">Highest likes</option>
+                                </select>
+                                <select name="sort_rating" id="category_mobileview" ng-change="filterByCategory()" ng-model="chkCategory">
+                                    <option value="" selected>Filter By Category</option>
+                                    <option value="adventure">Adventure</option>
+                                    <option value="beach">Beach</option>
+                                    <option value="craft">Craft</option>
+                                    <option value="camping">Camping</option>
+                                    <option value="city">City</option>
+                                    <option value="cultural">Cultural</option>
+                                    <option value="heritage">Heritage</option>
+                                    <option value="temple">Temple</option>
+                                    <option value="tribal">Tribal</option>
+                                    <option value="wildlife">Wildlife</option>
                                 </select>
                             </div>
                         </div>
+                        
                         <div class="col-md-6 col-sm-6 hidden-xs text-right" ng-if="stateParam != undefined && categoryParam == undefined">
                             <a href="#/view/grid?state={{stateParam}}" class="bt_filters">
                                 <i class="icon-th"></i>

@@ -314,6 +314,9 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         if(selectedCategory != '' && $scope.stateParam != ''){
             window.location.href = '#/view/list?state=' + $scope.stateParam + '&category=' + selectedCategory;
         }
+        if(selectedCategory == '' && $scope.stateParam != ''){
+            window.location.href = '#/view/list?state=' + $scope.stateParam;
+        }
     };
 
     $scope.enquiry = function(){
