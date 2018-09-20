@@ -67,10 +67,14 @@
             });
         };
 
-        this.submitUserReq = function(reqObject){
-            //get new key
-            var newPostKey = firebase.database().ref().child('query').push().key;
+        this.submitUserReq = function(reqObject){         
+            var newPostKey = firebase.database().ref().child('query').push().key;//get new key
             return firebase.database().ref("query").child(newPostKey).set(reqObject);           
+        };
+
+        this.submitUserEnquiry = function(reqObject){        
+            var newPostKey = firebase.database().ref().child('booking').push().key;//get new key
+            return firebase.database().ref("booking").child(newPostKey).set(reqObject);           
         };
 
     }]);

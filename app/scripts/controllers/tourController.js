@@ -305,4 +305,49 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             window.location.href = '#/view/list?state=' + selectedState;
         }
     };
+
+    $scope.enquiry = function(){
+        if($('#startDt').val() == '' || $scope.enquiry.startDt == undefined){
+            $('#startDt').focus();
+            $('#startDt').css({'border-color':'red'});
+            return false;
+        }
+        if($('#endDt').val() =='' || $scope.enquiry.endDt == undefined){
+            $('#endDt').focus();
+            $('#endDt').css({'border-color':'red'});
+            return false;
+        }
+        if($('#name').val() =='' || $scope.enquiry.name == undefined){
+            $('#name').focus();
+            $('#name').css({'border-color':'red'});
+            return false;
+        }
+        if($('#email').val() =='' || $scope.enquiry.email == undefined){
+            $('#email').focus();
+            $('#email').css({'border-color':'red'});
+            return false;
+        }
+        else{
+            var enquiry = { 
+                name: $scope.enquiry.name,
+                email: $scope.enquiry.email,
+                phone: $scope.enquiry.phone,
+                startDt: $scope.enquiry.startDt,
+                endDt: $scope.enquiry.endDt,
+                timestamp: new Date().toString()
+            };
+            indiaTourService.submitUserEnquiry(enquiry)
+            .then(function(){
+                alert('Enquiry submitted successfully!');
+                $('#name').val('');
+                $('#email').val('');
+                $('#startDt').val('');
+                $('#endDt').val('');
+                $('#phone').val('');
+            })
+            .catch(function(err){
+                alert(err);
+            });
+        }
+    };
 });

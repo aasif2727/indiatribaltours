@@ -80,34 +80,40 @@
 					<div class="box_style_1 expose" id="booking_box">
 						<h3 class="inner">- Enquiry -</h3>
 						<div class="row">
-							<div class="col-md-12 col-sm-12">
+							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label></i>Select start date:</label>
-									<!-- <input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text"> -->
-									<md-datepicker ng-model="startDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+									<label><i class="icon-calendar-7"></i>Select start date<sup style="color:#e04f67">*</sup> :</label>
+									<input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text" id="startDt" data-ng-model="enquiry.startDt">
+									<!-- <md-datepicker ng-model="startDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 col-sm-12">
+							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label></i>Select end date:</label>
-									<!-- <input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text"> -->
-									<md-datepicker ng-model="endDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+									<label><i class="icon-calendar-7"></i>Select end date<sup style="color:#e04f67">*</sup> :</label>
+									<input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text" id="endDt" data-ng-model="enquiry.endDt">
+									<!-- <md-datepicker ng-model="endDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label>Name:</label>
-									<input type="text" placeholder="Name" id="name" class="form-control">
+									<label>Name<sup style="color:#e04f67">*</sup> :</label>
+									<input type="text" placeholder="Name" id="name" class="form-control" data-ng-model="enquiry.name">
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label>Email:</label>
-									<input type="text" placeholder="Email" id="email" class="form-control">
+									<label>Phone:</label>
+									<input type="text" placeholder="Phone" id="phone" class="form-control" data-ng-model="enquiry.phone">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<div class="form-group">
+									<label>Email<sup style="color:#e04f67">*</sup> :</label>
+									<input type="text" placeholder="Email" id="email" class="form-control" data-ng-model="enquiry.email">
 								</div>
 							</div>
 						</div>
@@ -132,7 +138,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<a class="btn_full" href="cart_fixed_sidebar.html">Enquire now</a>
+						<a class="btn_full" ng-click="enquiry();">Enquire now</a>
 					</div>
 				</div>
 			</aside>
