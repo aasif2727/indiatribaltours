@@ -321,13 +321,3 @@ p {
     }
 }
 </style>
-<script>
-    $scope.filterByState = function(value){
-        alert('hi');
-        alert(value);
-        var selectedState = $('#state_mobileview').val();
-        if(selectedState != ''){
-            window.location.href = '#/view/list?state=' + selectedState;
-        }
-    };
-</script>
