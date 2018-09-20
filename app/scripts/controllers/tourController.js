@@ -369,7 +369,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             indiaTourService.submitUserEnquiry(enquiry)
             .then(function(){
                 alert('Enquiry submitted successfully!');
-                $('#name').val('');
+                $('#fullname').val('');
                 $('#email').val('');
                 $('#startDt').val('');
                 $('#endDt').val('');
@@ -379,5 +379,22 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                 alert(err);
             });
         }
+    };
+
+    $scope.startOpened = false;
+    $scope.endOpened = false;
+    $scope.openStartDt = function() {
+        $scope.startOpened = true;
+    };
+
+    $scope.openEndDt = function() {
+        $scope.endOpened = true;
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
     };
 });

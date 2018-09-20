@@ -83,15 +83,17 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i>Select start date<sup style="color:#e04f67">*</sup> :</label>
-									<input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text" id="startDt" data-ng-model="enquiry.startDt">
-									<!-- <md-datepicker ng-model="startDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
+									<input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text" id="startDt" ng-model="enquiry.startDt"
+									uib-datepicker-popup is-open="startOpened" datepicker-options="dateOptions" 
+									ng-required="true" close-text="Close" ng-click="openStartDt()">
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i>Select end date<sup style="color:#e04f67">*</sup> :</label>
-									<input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text" id="endDt" data-ng-model="enquiry.endDt">
-									<!-- <md-datepicker ng-model="endDt" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
+									<input class="date-pick form-control" placeholder="MM/DD/YYYY" type="text" id="endDt" ng-model="enquiry.endDt"
+									uib-datepicker-popup is-open="endOpened" datepicker-options="dateOptions" 
+									ng-required="true" close-text="Close" ng-click="openEndDt()">
 								</div>
 							</div>
 						</div>
@@ -105,7 +107,7 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label>Phone :</label>
-									<input type="text" ng-keypress="return isNumberKey(event)" placeholder="Phone" id="phone" class="form-control" data-ng-model="enquiry.phone">
+									<input type="text" placeholder="Phone" id="phone" class="form-control" data-ng-model="enquiry.phone">
 								</div>
 							</div>
 						</div>
