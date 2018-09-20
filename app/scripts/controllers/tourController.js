@@ -297,12 +297,17 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             return 'north';
     };
   
-    $scope.filterByState = function(value){
-        alert('hi');
-        alert(value);
+    $scope.filterByState = function(){
         var selectedState = $('#state_mobileview').val();
         if(selectedState != ''){
             window.location.href = '#/view/list?state=' + selectedState;
+        }
+    };
+
+    $scope.filterByCategory = function(){
+        var selectedCategory = $('#category_mobileview').val();
+        if(selectedCategory != '' && $scope.stateParam != ''){
+            window.location.href = '#/view/list?state=' + $scope.stateParam + '&category=' + selectedCategory;
         }
     };
 

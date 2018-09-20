@@ -112,7 +112,7 @@
                                     <option value="lower">Lowest hits</option>
                                     <option value="higher">Highest hits</option>
                                 </select>
-                                <select name="sort_price" id="state_mobileview" ngChange="filterByState(this)" ngModel="chkState">
+                                <select name="sort_price" id="state_mobileview" ng-change="filterByState()" ng-model="chkState">
                                     <option value="" selected>Filter By State</option>
                                     <option value="assam">Assam</option>
                                     <option value="chattisgarh">Chattisgarh</option>
@@ -129,7 +129,7 @@
                                     <option value="lower">Lowest likes</option>
                                     <option value="higher">Highest likes</option>
                                 </select>
-                                <select name="sort_rating" id="category_mobileview">
+                                <select name="sort_rating" id="category_mobileview" ng-change="filterByCategory()" ng-model="chkCategory">
                                     <option value="" selected>Filter By Category</option>
                                     <option value="adventure">Adventure</option>
                                     <option value="beach">Beach</option>
