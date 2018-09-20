@@ -319,6 +319,23 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
     };
 
+    $scope.orderByHits = function(){
+        var _orderBy = $('#state_webview').val();
+        if(_orderBy != '' && _orderBy == 'asc'){
+            $scope.itineraries = _.sortBy($scope.itineraries,'hits');
+        }
+        if(_orderBy != '' && _orderBy == 'desc'){
+            $scope.itineraries = _.sortBy($scope.itineraries,'hits').reverse();
+        }
+    };
+
+    $scope.isNumberKey = function(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
     $scope.enquiry = function(){
         if($('#startDt').val() == '' || $scope.enquiry.startDt == undefined){
             $('#startDt').focus();
@@ -330,9 +347,9 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             $('#endDt').css({'border-color':'red'});
             return false;
         }
-        if($('#name').val() =='' || $scope.enquiry.name == undefined){
-            $('#name').focus();
-            $('#name').css({'border-color':'red'});
+        if($('#fullname').val() =='' || $scope.enquiry.fullname == undefined){
+            $('#fullname').focus();
+            $('#fullname').css({'border-color':'red'});
             return false;
         }
         if($('#email').val() =='' || $scope.enquiry.email == undefined){
@@ -342,7 +359,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         else{
             var enquiry = { 
-                name: $scope.enquiry.name,
+                name: $scope.enquiry.fullname,
                 email: $scope.enquiry.email,
                 phone: $scope.enquiry.phone,
                 startDt: $scope.enquiry.startDt,

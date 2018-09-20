@@ -107,18 +107,21 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
-                                <select name="sort_price" id="state_webview">
+                                <select name="sort_price" id="state_webview" ng-change="orderByHits()" ng-model="chkHits">
                                     <option value="" selected>Sort by hits</option>
-                                    <option value="lower">Lowest hits</option>
-                                    <option value="higher">Highest hits</option>
+                                    <option value="asc">Lowest hits</option>
+                                    <option value="desc">Highest hits</option>
                                 </select>
                                 <select name="sort_price" id="state_mobileview" ng-change="filterByState()" ng-model="chkState">
                                     <option value="" selected>Filter By State</option>
                                     <option value="assam">Assam</option>
                                     <option value="chattisgarh">Chattisgarh</option>
+                                    <option value="gujarat">Gujarat</option>
                                     <option value="madhya-pradesh">Madhya Pradesh</option>
+                                    <option value="nagaland">Nagaland</option>
                                     <option value="odisha">Odisha</option>
                                     <option value="rajasthan">Rajasthan</option>
+                                    <option value="sikkim">Sikkim</option>
                                 </select>
                             </div>
                         </div>

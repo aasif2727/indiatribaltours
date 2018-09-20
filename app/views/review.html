@@ -99,13 +99,13 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label>Name<sup style="color:#e04f67">*</sup> :</label>
-									<input type="text" placeholder="Name" id="name" class="form-control" data-ng-model="enquiry.name">
+									<input type="text" placeholder="Name" id="fullname" class="form-control" data-ng-model="enquiry.fullname">
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label>Phone :</label>
-									<input type="text" placeholder="Phone" id="phone" class="form-control" data-ng-model="enquiry.phone">
+									<input type="text" ng-keypress="return isNumberKey(event)" placeholder="Phone" id="phone" class="form-control" data-ng-model="enquiry.phone">
 								</div>
 							</div>
 						</div>
