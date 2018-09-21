@@ -357,23 +357,39 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             $('#email').css({'border-color':'red'});
             return false;
         }
-        else{
+        // if($('#phone').val() !='' || $scope.enquiry.phone != undefined){
+        //     var regEx = /^\+?\d{10}$/;
+        //     var isValidPh = regEx.test($scope.enquiry.phone);
+        //     if(!isValidPh){
+        //         $('#phone').focus();
+        //         $('#phone').val('');
+        //         $('#phone').css({'border-color':'red'});
+        //         return false;
+        //     }
+        //     return true;
+        // }
+        else {
             var enquiry = { 
                 name: $scope.enquiry.fullname,
                 email: $scope.enquiry.email,
-                phone: $scope.enquiry.phone,
-                startDt: $scope.enquiry.startDt,
-                endDt: $scope.enquiry.endDt,
-                timestamp: new Date().toString()
+                phone: ($scope.enquiry.phone == '' || $scope.enquiry.phone == undefined)? 'NA': $scope.enquiry.phone,
+                startDt: $scope.enquiry.startDt.toDateString(),
+                endDt: $scope.enquiry.endDt.toDateString(),
+                timestamp: new Date().toDateString()
             };
             indiaTourService.submitUserEnquiry(enquiry)
             .then(function(){
                 alert('Enquiry submitted successfully!');
                 $('#fullname').val('');
+                $('#fullname').css({'border-color':'#8c8585'});
                 $('#email').val('');
+                $('#email').css({'border-color':'#8c8585'});
                 $('#startDt').val('');
+                $('#startDt').css({'border-color':'#8c8585'});
                 $('#endDt').val('');
+                $('#endDt').css({'border-color':'#8c8585'});            
                 $('#phone').val('');
+                $('#phone').css({'border-color':'#8c8585'});       
             })
             .catch(function(err){
                 alert(err);
