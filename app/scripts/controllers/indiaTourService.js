@@ -3,14 +3,6 @@
     angular.module('indiaTours').service("indiaTourService", ['$http','$firebaseObject','$firebaseArray', function ($http,$firebaseObject,$firebaseArray) {
         var baseUrl = 'https://indiatribaltours-db786.firebaseio.com';
 
-        this.getSliderImages = function () {
-            return $http.get(baseUrl + '/slider.json');
-        };
-
-        this.allDestination = function(){
-            var dbRef = firebase.database().ref("/states/destinations").orderByChild("hits");
-            return $firebaseArray(dbRef);
-        };
  
         this.getAllState = function(){
             var dbRef = firebase.database().ref("states");
@@ -38,7 +30,6 @@
         };
 
         this.getStateObjectByCode = function(region,state){
-            console.log(state);
             var dbRef = firebase.database().ref("states/"+ state);
             return $firebaseObject(dbRef);
         };
@@ -55,16 +46,9 @@
             });
         };
 
-        this.updateItineraryLikes = function(stateName,code){
-            var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
-            dbRef.once('value', function(snapshot) {
-                if (snapshot.hasChild("likes")) {
-                    dbRef.update({"likes": snapshot.val().hits + 1});
-                }
-                else{
-                    dbRef.update({"likes": 1});
-                }
-            });
+        this.updateItineraryLikes = function(userSession){
+            var newSessionKey = firebase.database().ref("userLikes").child('aasif2707').push().key;//get new key
+            return firebase.database().ref("userLikes").child('aasif2707').child(newSessionKey).set(userSession);
         };
 
         this.submitUserReq = function(reqObject){         

@@ -25,12 +25,12 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
             $('#email_contact').css({'border-color':'red'});
             return;
         }
-        if($('#phone_contact').val() =='' ||$scope.user.phone == undefined){
-            //alert('Phone required.');
-            $('#phone_contact').focus();
-            $('#phone_contact').css({'border-color':'red'});
-            return false;
-        }
+        // if($('#phone_contact').val() =='' ||$scope.user.phone == undefined){
+        //     //alert('Phone required.');
+        //     $('#phone_contact').focus();
+        //     $('#phone_contact').css({'border-color':'red'});
+        //     return false;
+        // }
         if($('#message_contact').val() =='' ||$scope.user.query == undefined){
             //alert('Please type your query.');
             $('#message_contact').focus();
@@ -43,7 +43,7 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
                 name: $scope.user.firstName,
                 country: $scope.user.country,
                 email: $scope.user.email,
-                phone: $scope.user.phone,
+                phone: ($scope.user.phone == '' || $scope.user.phone == undefined)? 'NA': $scope.user.phone,
                 query: $scope.user.query,
                 timestamp: new Date().toString()
             };
@@ -51,10 +51,15 @@ angular.module('indiaTours').controller("enquiryController", function ($scope,$l
             .then(function(){
                 alert('Enquiry submitted successfully!');
                 $('#name_contact').val('');
+                $('#name_contact').css({'border-color':'#8c8585'});
                 $('#country_contact').val('');
+                $('#country_contact').css({'border-color':'#8c8585'});
                 $('#email_contact').val('');
+                $('#email_contact').css({'border-color':'#8c8585'});
                 $('#phone_contact').val('');
+                $('#phone_contact').css({'border-color':'#8c8585'});
                 $('#message_contact').val('');
+                $('#message_contact').css({'border-color':'#8c8585'});
             })
             .catch(function(err){
                 alert(err);

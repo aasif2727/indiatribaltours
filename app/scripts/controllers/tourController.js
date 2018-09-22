@@ -266,12 +266,18 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         return newArr;
     };
 
-    $scope.updateLike = function(itineraryCode){
+    $scope.updateLike = function(itineraryCode,category,itineraryTitle){
         var _email = localStorage.getItem('email');
         var _signUpMode = localStorage.getItem('signUpMode');
         if(_email != undefined && (_signUpMode != undefined && _signUpMode == 'true') && $scope.stateParam != undefined){
-            //update page-likes
-            indiaTourService.updateItineraryLikes($scope.stateParam,itineraryCode);
+            var linkMap = "#/review/itinerary?state="+$scope.stateParam+"&category="+category+"&title="+itineraryTitle+"&code="+itineraryCode;
+            var userSession = {
+                name: _email,
+                email: _email,
+                link: linkMap,
+                timestamp: new Date().toDateString()
+            };
+            indiaTourService.updateItineraryLikes(userSession);
         }
         else{
             alert('Please log-in!');
