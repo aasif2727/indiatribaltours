@@ -363,6 +363,11 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             $('#email').css({'border-color':'red'});
             return false;
         }
+        if($('#adultCount').val() =='' || $scope.enquiry.adultCount == undefined){
+            $('#adultCount').focus();
+            $('#adultCount').css({'border-color':'red'});
+            return false;
+        }
         // if($('#phone').val() !='' || $scope.enquiry.phone != undefined){
         //     var regEx = /^\+?\d{10}$/;
         //     var isValidPh = regEx.test($scope.enquiry.phone);
@@ -379,6 +384,11 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                 name: $scope.enquiry.fullname,
                 email: $scope.enquiry.email,
                 phone: ($scope.enquiry.phone == '' || $scope.enquiry.phone == undefined)? 'NA': $scope.enquiry.phone,
+                members:{
+                    adultCount: $scope.enquiry.adultCount,
+                    childCount: ($scope.enquiry.childCount == '' || $scope.enquiry.childCount == undefined)? 0 :$scope.enquiry.childCount,
+                    infantCount: ($scope.enquiry.infantCount == '' || $scope.enquiry.infantCount == undefined)? 0: $scope.enquiry.infantCount
+                },
                 startDt: $scope.enquiry.startDt.toDateString(),
                 endDt: $scope.enquiry.endDt.toDateString(),
                 timestamp: new Date().toDateString()
