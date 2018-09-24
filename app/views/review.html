@@ -5,7 +5,8 @@
 				<li><a href="/">Home</a>
 				</li>
 				<li>
-                    <a href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(stateParam)}}</a>
+					<a ng-show="{{stateParam != 'all'}}" href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(stateParam)}}</a>
+					<a ng-show="{{stateParam == 'all'}}" href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(categoryParam)}}</a>
                 </li>
 				<li>{{util.camelCase(itineraryDetail.title)}}</li>
 			</ul>
@@ -30,7 +31,7 @@
 				</div>
 				<div class="row" >
 					<div class="col-md-12 col-sm-12">
-						<div>
+						<div ng-show="{{stateParam != 'all'}}">
 							<md-content>
 								<md-tabs md-dynamic-height="" md-border-bottom="">
 									<md-tab label="Itinerary :">
@@ -45,21 +46,44 @@
 											<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:#e04f67;">Day - {{$index +1}}: </span>{{daywise}}</p>
 										</md-content>
 									</md-tab>
-									<md-tab label="What's Included :" ng-show="itineraryDetail.what_included.length > 0">
+									<md-tab label="What's Included :">
 										<md-content class="md-padding">
 											<ul class="list_ok" ng-repeat="inclusions in itineraryDetail.what_included">
 												<li>{{inclusions}}</li>
 											</ul>
 										</md-content>
 									</md-tab>
-									<md-tab label="What's Not Included :" ng-show="itineraryDetail.what_excluded.length > 0">
+									<md-tab label="What's Not Included :">
 										<md-content class="md-padding">
 											<ul class="list_ok" ng-repeat="exclusions in itineraryDetail.what_excluded">
 												<li>{{exclusions}}</li>
 											</ul>
 										</md-content>
 									</md-tab>
-									<md-tab label="Trip Highlights :" ng-show="itineraryDetail.trip_highlights.length > 0">
+									<md-tab label="Gallery :">
+										<md-content class="md-padding">
+
+										</md-content>
+									</md-tab>
+								</md-tabs>
+							</md-content>
+						</div>
+						<div ng-show="{{stateParam == 'all'}}">
+							<md-content>
+								<md-tabs md-dynamic-height="" md-border-bottom="">
+									<md-tab label="Itinerary :">
+										<md-content class="md-padding">
+											<h5 style="font-weight:bold;color:black;">{{itineraryDetail.title}}</h5>
+											<p ng-repeat="description in itineraryDetail.description" ng-bind-html="description"></p>
+											<hr>
+											<h5 style="font-weight:bold;color:black;">Destination Covered</h5>
+											<p style="color:#e04f67;font-weight:bold">{{itineraryDetail.destinations}}</p>
+											<hr>
+											<h5 style="font-weight:bold;color:black;">Itinerary:</h5>
+											<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:#e04f67;">Day - {{$index +1}}: </span>{{daywise}}</p>
+										</md-content>
+									</md-tab>
+									<md-tab label="Trip Highlights :">
 										<md-content class="md-padding">
 											<ul class="list_ok" ng-repeat="highlights in itineraryDetail.trip_highlights">
 												<li>{{highlights}}</li>

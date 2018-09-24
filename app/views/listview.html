@@ -6,7 +6,8 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="#/view/list?state={{stateParam}}">{{util.camelCase(stateParam)}}</a>
+                    <a ng-show="stateParam != 'all'" href="#/view/list?state={{stateParam}}">{{util.camelCase(stateParam)}}</a>
+                    <a ng-show="stateParam == 'all'" href="javascript:void(0)">Special Tour</a>
                 </li>
                 <li>Tour List View</li>
             </ul>
@@ -92,7 +93,7 @@
                         <li ng-show="stateParam == 'all'">
                             <a href="#/view/list?state=all&category=trekking">
                                 <i class="icon_set_1_icon-30"></i>Trekking tours
-                                <span style="color:orange;font-size:1em;">({{itineraryCount.wildlife}})</span>
+                                <span style="color:orange;font-size:1em;">({{itineraryCount.trekking}})</span>
                             </a>
                         </li>
                     </ul>
@@ -182,7 +183,7 @@
                                 <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam == undefined?itinerary.package_type: categoryParam }}&title={{itinerary.package_code}}&code={{itinerary.code}}">
                                     <img src="{{itinerary.thumbImg}}" alt="Image">
                                     <div class="short_info">
-                                        <i class="icon_set_1_icon-30"></i>{{util.camelCase(stateParam)}} {{itinerary.category}} 
+                                        <i class="icon_set_1_icon-30"></i>{{stateParam == 'all'? '': util.camelCase(stateParam)}} {{itinerary.category}} 
                                     </div>
                                 </a>     
                                 <div class="heart">

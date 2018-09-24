@@ -268,17 +268,16 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             });
         }
         if((_state != undefined && _state != null) && _state == 'all'){
-            $scope.itineraryCount.all = 0;
-            $scope.itineraryCount.beach = 0;
-            $scope.itineraryCount.tribal = 0;
-            $scope.itineraryCount.temple = 0;
-            $scope.itineraryCount.heritage = 0;
-            $scope.itineraryCount.wildlife = 0;
-            $scope.itineraryCount.craft = 0;
-            $scope.itineraryCount.cultural = 0;
-            $scope.itineraryCount.city = 0;
-            $scope.itineraryCount.camping = 0;
-            $scope.itineraryCount.adventure = 0;       
+            var loadedResult = [];
+            var resultArray = indiaTourService.getSpecialTourPackage('all');
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraryCount.trekking = _.where(loadedResult,{ category : "Trekking Tour"}).length;
+                    $scope.itineraryCount.camping = _.where(loadedResult,{ category : "Camping Tour"}).length;
+                    $scope.itineraryCount.adventure = _.where(loadedResult,{ category : "Adventure Tour"}).length;
+                });
+            });    
         }
     };
 
