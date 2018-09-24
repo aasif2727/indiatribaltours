@@ -19,6 +19,11 @@
             return $firebaseArray(dbRef);
         };
 
+        this.getSpecialTourPackage = function(category){
+            var dbRef = firebase.database().ref('states').child('itineraries');
+            return $firebaseArray(dbRef);
+        };
+
         this.getTourObjectByState = function(stateName,code){
             var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
             return $firebaseObject(dbRef);

@@ -211,6 +211,40 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                 }
             }
         }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'adventure'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getSpecialTourPackage(_category);
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    console.log(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Adventure Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'camping'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getSpecialTourPackage(_category);
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    console.log(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Camping Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'trekking'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getSpecialTourPackage(_category);
+            console.log("before--" + resultArray);
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    console.log("after--" +item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Trekking Tour"});
+                });
+            });
+        }
     };
 
     /*********Load Itinerary Count**************/
@@ -221,7 +255,6 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
-                    //console.log(loadedResult);
                     $scope.itineraryCount.all = loadedResult.length;
                     $scope.itineraryCount.beach = _.where(loadedResult,{ category : "Beach Tour"}).length;
                     $scope.itineraryCount.tribal = _.where(loadedResult,{ category : "Tribal Tour"}).length;
@@ -235,6 +268,19 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                     $scope.itineraryCount.adventure = _.where(loadedResult,{ category : "Adventure Tour"}).length;
                 });
             });
+        }
+        if((_state != undefined && _state != null) && _state == 'all'){
+            $scope.itineraryCount.all = 0;
+            $scope.itineraryCount.beach = 0;
+            $scope.itineraryCount.tribal = 0;
+            $scope.itineraryCount.temple = 0;
+            $scope.itineraryCount.heritage = 0;
+            $scope.itineraryCount.wildlife = 0;
+            $scope.itineraryCount.craft = 0;
+            $scope.itineraryCount.cultural = 0;
+            $scope.itineraryCount.city = 0;
+            $scope.itineraryCount.camping = 0;
+            $scope.itineraryCount.adventure = 0;       
         }
     };
 
