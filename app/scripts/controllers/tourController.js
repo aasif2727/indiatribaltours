@@ -236,11 +236,9 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'trekking'){
             var loadedResult = [];
             var resultArray = indiaTourService.getSpecialTourPackage(_category);
-            console.log("before--" + resultArray);
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
-                    console.log("after--" +item);
                     $scope.itineraries = _.where(loadedResult,{ category : "Trekking Tour"});
                 });
             });

@@ -45,17 +45,24 @@
 											<p ng-repeat="daywise in itineraryDetail.daywise track by $index"><span style="font-weight:bold;color:#e04f67;">Day - {{$index +1}}: </span>{{daywise}}</p>
 										</md-content>
 									</md-tab>
-									<md-tab label="What's Included :">
+									<md-tab label="What's Included :" ng-show="itineraryDetail.what_included.length > 0">
 										<md-content class="md-padding">
 											<ul class="list_ok" ng-repeat="inclusions in itineraryDetail.what_included">
 												<li>{{inclusions}}</li>
 											</ul>
 										</md-content>
 									</md-tab>
-									<md-tab label="What's Not Included :">
+									<md-tab label="What's Not Included :" ng-show="itineraryDetail.what_excluded.length > 0">
 										<md-content class="md-padding">
 											<ul class="list_ok" ng-repeat="exclusions in itineraryDetail.what_excluded">
 												<li>{{exclusions}}</li>
+											</ul>
+										</md-content>
+									</md-tab>
+									<md-tab label="Trip Highlights :" ng-show="itineraryDetail.trip_highlights.length > 0">
+										<md-content class="md-padding">
+											<ul class="list_ok" ng-repeat="highlights in itineraryDetail.trip_highlights">
+												<li>{{highlights}}</li>
 											</ul>
 										</md-content>
 									</md-tab>

@@ -14,7 +14,9 @@ angular.module('indiaTours').controller("reviewController", function ($scope,$lo
     function bindItineraryDetails(_state,_code){
         if((_state != undefined && _state != null) && (_code != undefined && _code != null)){
             $scope.itineraryDetail = indiaTourService.getTourObjectByState(_state,_code);
-            //update page-hits
+            console.log($scope.itineraryDetail);
+            console.log($scope.itineraryDetail.what_included);
+            console.log($scope.itineraryDetail.trip_highlights);
             indiaTourService.updateItineraryHits(_state,_code);
         }
     };
@@ -28,7 +30,6 @@ angular.module('indiaTours').controller("reviewController", function ($scope,$lo
     function bindStateDetails(_region,_state){
         if((_region != undefined && _region != null) && (_state != undefined && _state != null)){
             $scope.stateDetail = indiaTourService.getStateObjectByCode(_region,_state);
-            console.log($scope.stateDetail.places_to_visit);
         }
     };
 
