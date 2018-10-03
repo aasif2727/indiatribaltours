@@ -8,21 +8,21 @@
         <div ng-repeat="itinerary in itineraries | limitTo:12" class="col-md-4 col-sm-6 wow zoomIn">
             <div class="tour_container">
                 <div class="img_container">
-                    <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam}}&title={{itinerary.package_code}}&code={{itinerary.code}}">
+                    <a href="#/review/itinerary?state={{itinerary.state}}&category={{itinerary.package_type}}&title={{itinerary.package_code}}&code={{itinerary.code}}">
                         <img src="{{itinerary.thumbImg}}" width="800" height="533" class="img-responsive" alt="{{itinerary.package_code}}" title="{{itinerary.package_code}}">
                         <div class="short_info">
-                            <i class="icon_set_1_icon-44"></i>{{util.camelCase(stateParam)}} {{itinerary.category}}
+                            <i class="icon_set_1_icon-44"></i>{{itinerary.category}}
                         </div>
                     </a>
                 </div>
-                <div class="hotel_title">
+                <div class="tour_title">
                     <h3>{{itinerary.title}}</h3>
                 </div>
             </div>
         </div>
     </div>
     <p class="text-center nopadding">
-        <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam}}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours ({{itineraries.length}}) </a>
+        <a href="#/review/itinerary?state={{itinerary.state}}&category={{itinerary.package_type}}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours ({{itineraries.length}}) </a>
     </p>
 </div>
 
