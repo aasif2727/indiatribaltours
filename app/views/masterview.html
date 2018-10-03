@@ -6,14 +6,13 @@
 
     <div class="row">
         <div ng-repeat="itinerary in itineraries | limitTo:12" class="col-md-4 col-sm-6 wow zoomIn">
-            <div class="hotel_container">
+            <div class="tour_container">
                 <div class="img_container">
                     <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam}}&title={{itinerary.package_code}}&code={{itinerary.code}}">
                         <img src="{{itinerary.thumbImg}}" width="800" height="533" class="img-responsive" alt="{{itinerary.package_code}}" title="{{itinerary.package_code}}">
                         <div class="short_info">
                             <i class="icon_set_1_icon-44"></i>{{util.camelCase(stateParam)}} {{itinerary.category}}
                         </div>
-                        <i class="icon-heart-empty-1"></i>
                     </a>
                 </div>
                 <div class="hotel_title">
@@ -23,7 +22,7 @@
         </div>
     </div>
     <p class="text-center nopadding">
-        <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam}}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1 medium"><i class="icon-eye-7"></i>View all hotels ({{allDestination.length}}) </a>
+        <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam}}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours ({{itineraries.length}}) </a>
     </p>
 </div>
 
