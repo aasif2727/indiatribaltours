@@ -9,7 +9,7 @@ angular.module('indiaTours').controller("homeController", function ($scope,$root
     /*********Load all Destinations********************/
     function getAllTribalTours(){
         var loadedResult = [];
-        var resultArray = indiaTourService.getAllTours();
+        var resultArray = indiaTourService.getTourByCategory();
         resultArray.$loaded().then(function(data){
             data.forEach(item =>{
                 loadedResult.push(item);
@@ -22,7 +22,7 @@ angular.module('indiaTours').controller("homeController", function ($scope,$root
     /*********Load Itinerary Count**************/
     function getItineraryCount(){
         var loadedResult = [];
-        var resultArray = indiaTourService.getAllTours();
+        var resultArray = indiaTourService.getTourByCategory();
         resultArray.$loaded().then(function(data){
             data.forEach(item =>{
                 loadedResult.push(item);
