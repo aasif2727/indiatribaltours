@@ -5,8 +5,8 @@
 				<li><a href="/">Home</a>
 				</li>
 				<li>
-					<a ng-show="{{stateParam != 'all'}}" href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(stateParam)}}</a>
-					<a ng-show="{{stateParam == 'all'}}" href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(categoryParam)}}</a>
+					<a ng-show="{{categoryParam != 'adventure' && categoryParam != 'camping' && categoryParam != 'trekking'}}" href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(stateParam)}}</a>
+					<a ng-show="{{categoryParam == 'adventure' || categoryParam == 'camping' || categoryParam == 'trekking'}}" href="#/view/list?state=all&category={{categoryParam}}">{{util.camelCase(categoryParam)}}</a>
                 </li>
 				<li>{{util.camelCase(itineraryDetail.title)}}</li>
 			</ul>
@@ -31,7 +31,7 @@
 				</div>
 				<div class="row" >
 					<div class="col-md-12 col-sm-12">
-						<div ng-show="{{stateParam != 'all'}}">
+						<div ng-show="{{categoryParam != 'adventure' && categoryParam != 'camping' && categoryParam != 'trekking'}}">
 							<md-content>
 								<md-tabs md-dynamic-height="" md-border-bottom="">
 									<md-tab label="Itinerary :">
@@ -68,7 +68,7 @@
 								</md-tabs>
 							</md-content>
 						</div>
-						<div ng-show="{{stateParam == 'all'}}">
+						<div ng-show="{{categoryParam == 'adventure' || categoryParam == 'camping' || categoryParam == 'trekking'}}">
 							<md-content>
 								<md-tabs md-dynamic-height="" md-border-bottom="">
 									<md-tab label="Itinerary :">

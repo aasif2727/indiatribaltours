@@ -213,18 +213,17 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'adventure'){
             var loadedResult = [];
-            var resultArray = indiaTourService.getSpecialTourPackage(_category);
+            var resultArray = indiaTourService.getSpecialTourPackage();
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
-                    console.log(item);
                     $scope.itineraries = _.where(loadedResult,{ category : "Adventure Tour"});
                 });
             });
         }
         if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'camping'){
             var loadedResult = [];
-            var resultArray = indiaTourService.getSpecialTourPackage(_category);
+            var resultArray = indiaTourService.getSpecialTourPackage();
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
@@ -235,7 +234,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'trekking'){
             var loadedResult = [];
-            var resultArray = indiaTourService.getSpecialTourPackage(_category);
+            var resultArray = indiaTourService.getSpecialTourPackage();
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
@@ -330,7 +329,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
 
     function getRegion(){
         if($scope.stateParam == 'odisha' || $scope.stateParam == 'sikkim' || $scope.stateParam == 'mizoram' 
-            || $scope.stateParam == 'nagaland' || $scope.stateParam == 'assam')
+            || $scope.stateParam == 'nagaland' || $scope.stateParam == 'assam' || $scope.stateParam == 'arunachal')
             return 'east';
         if($scope.stateParam == 'gujarat' || $scope.stateParam == 'rajasthan' || $scope.stateParam == 'chandigarh' 
             || $scope.stateParam == 'punjab')

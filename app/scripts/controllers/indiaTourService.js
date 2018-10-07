@@ -24,20 +24,14 @@
             return $firebaseArray(dbRef);
         };
 
-        this.getSpecialTourPackage = function(category){
-            var dbRef = firebase.database().ref('specialtours');
+        this.getSpecialTourPackage = function(){
+            var dbRef = firebase.database().ref('tours');
             return $firebaseArray(dbRef);
         };
 
         this.getTourObjectByState = function(stateName,code){
-            if(stateName != 'all'){
-                var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
-                return $firebaseObject(dbRef);
-            }
-            if(stateName == 'all'){
-                var dbRef = firebase.database().ref("specialtours/"+ code);
-                return $firebaseObject(dbRef);
-            }
+            var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
+            return $firebaseObject(dbRef);
         };
 
         this.getDestinationObjectByCode = function(category,code){
@@ -51,28 +45,15 @@
         };
 
         this.updateItineraryHits = function(stateName,code){
-            if(stateName != 'all'){
-                var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
-                dbRef.once('value', function(snapshot) {
-                    if (snapshot.hasChild("hits")) {
-                        dbRef.update({"hits": snapshot.val().hits + 1});
-                    }
-                    else{
-                        dbRef.update({"hits": 1});
-                    }
-                });
-            }
-            if(stateName == 'all'){
-                var dbRef = firebase.database().ref("specialtours/"+ code);
-                dbRef.once('value', function(snapshot) {
-                    if (snapshot.hasChild("hits")) {
-                        dbRef.update({"hits": snapshot.val().hits + 1});
-                    }
-                    else{
-                        dbRef.update({"hits": 1});
-                    }
-                });
-            }            
+            var dbRef = firebase.database().ref("states/"+ stateName +"/itineraries/"+ code);
+            dbRef.once('value', function(snapshot) {
+                if (snapshot.hasChild("hits")) {
+                    dbRef.update({"hits": snapshot.val().hits + 1});
+                }
+                else{
+                    dbRef.update({"hits": 1});
+                }
+            });     
         };
 
         this.updateItineraryLikes = function(userSession){

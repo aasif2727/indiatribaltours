@@ -181,7 +181,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="img_list" style="border-color:green;">
-                                <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam == undefined?itinerary.package_type: categoryParam }}&title={{itinerary.package_code}}&code={{itinerary.code}}">
+                                <a href="#/review/itinerary?state={{stateParam == 'all'? itinerary.state : stateParam}}&category={{categoryParam == undefined?itinerary.package_type: categoryParam }}&title={{itinerary.package_code}}&code={{itinerary.code}}">
                                     <img src="{{itinerary.thumbImg}}" alt="Image">
                                     <div class="short_info">
                                         <i class="icon_set_1_icon-30"></i>{{stateParam == 'all'? '': util.camelCase(stateParam)}} {{itinerary.category}} 
