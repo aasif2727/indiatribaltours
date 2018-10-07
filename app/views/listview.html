@@ -113,6 +113,7 @@
 
                 <div id="tools">
                     <div class="row">
+                        <!-- FIlters -->
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
                                 <select name="sort_price" id="state_webview" ng-change="orderByHits()" ng-model="chkHits">
@@ -136,10 +137,11 @@
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <div class="styled-select-filters">
-                                <select name="sort_rating" id="category_webview">
-                                    <option value="" selected>Sort by likes</option>
-                                    <option value="lower">Lowest likes</option>
-                                    <option value="higher">Highest likes</option>
+                                <select name="sort_duration" ng-change="filterByDuration()" ng-model="chkDuration" id="ddlDuration">
+                                    <option value="" selected>Sort by duration</option>
+                                    <option value="7">1-7 days</option>
+                                    <option value="15">8-15 days</option>
+                                    <option value="16">>15 days</option>
                                 </select>
                                 <select name="sort_rating" id="category_mobileview" ng-change="filterByCategory()" ng-model="chkCategory">
                                     <option value="" selected>Filter By Category</option>
@@ -156,7 +158,7 @@
                                 </select>
                             </div>
                         </div>
-
+                        <!-- ListView/Grid View toggle  -->
                         <div class="col-md-6 col-sm-6 hidden-xs text-right" ng-if="stateParam != undefined && categoryParam == undefined">
                                 <a href="#/view/grid?state={{stateParam}}" class="bt_filters">
                                     <i class="icon-th"></i>
@@ -196,9 +198,9 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="tour_list_desc">
                                 <h3><strong>{{itinerary.title}}</strong></h3>
-                                <p ng-hide="categoryParam == 'events'"><strong style="color:orange">{{util.camelCase(stateParam)}} {{itinerary.category}} : </strong> {{util.trimStringToFit(itinerary.description[0],250)}}</p>
+                                <p ng-show="categoryParam != 'events'"><strong style="color:orange">{{util.camelCase(stateParam)}} {{itinerary.category}} : </strong> {{util.trimStringToFit(itinerary.description[0],250)}}</p>
                                 <p ng-show="categoryParam == 'events'"><strong style="color:orange">{{util.camelCase(stateParam)}} {{itinerary.category}} : </strong> {{util.trimStringToFit(itinerary.description[0],300)}}</p>
-                                <p ng-show="categoryParam != 'events'"><strong style="color:orange">Destination covered: </strong>{{util.trimStringToFit(itinerary.destinations,100)}}</p>
+                                <p ng-show="categoryParam != 'events'"><strong style="color:orange">Destination covered: </strong>{{util.trimStringToFit(itinerary.destinations,90)}}</p>
                                 <p ng-show="categoryParam == 'events'"><strong style="color:orange">Event dates: </strong>12-12-2018</p>
                                 <p ng-show="categoryParam == 'events'"><strong style="color:orange">Location : </strong>Bhubaneswar</p>
                                 <p ng-show="categoryParam == 'events'"><strong style="color:orange">Activities : </strong>Crafts,Cultural & Tribal dance</p>

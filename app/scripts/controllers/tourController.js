@@ -6,6 +6,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
     $scope.packageTitle = $location.search()['title'];
     $scope.tourlistItems = [];
     $scope.itineraries = [];
+    $scope.globalStorage = [];
     $scope.itineraryCount = {};
     $scope.chunkData;
     $scope._ = _;
@@ -24,6 +25,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         if((_state != undefined && _state != null) && _category == undefined){
             if($scope.firstParameter  == 'list'){
                 $scope.itineraries = indiaTourService.getTourByState(_state);
+                $scope.globalStorage = indiaTourService.getTourByState(_state);
             }
             else{
                 var loadedResult = [];
@@ -46,6 +48,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Tribal Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Tribal Tour"});
                         });
                     });
                 }
@@ -65,6 +68,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Temple Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Temple Tour"});
                         });
                     });
                 }
@@ -84,6 +88,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "City Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "City Tour"});
                         });
                     });
                 }
@@ -103,6 +108,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Beach Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Beach Tour"});
                         });
                     });
                 }
@@ -122,6 +128,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Camping Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Camping Tour"});
                         });
                     });
                 }
@@ -141,6 +148,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Heritage Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Heritage Tour"});
                         });
                     });
                 }
@@ -160,6 +168,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Wildlife Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Wildlife Tour"});
                         });
                     });
                 }
@@ -179,6 +188,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Art & Craft Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Art & Craft Tour"});
                         });
                     });
                 }
@@ -198,6 +208,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                         data.forEach(item =>{
                             loadedResult.push(item);
                             $scope.itineraries = _.where(loadedResult,{ category : "Cultural Tour"});
+                            $scope.globalStorage = _.where(loadedResult,{ category : "Cultural Tour"});
                         });
                     });
                 }
@@ -218,6 +229,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                 data.forEach(item =>{
                     loadedResult.push(item);
                     $scope.itineraries = _.where(loadedResult,{ category : "Adventure Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Adventure Tour"});
                 });
             });
         }
@@ -227,8 +239,8 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
-                    console.log(item);
                     $scope.itineraries = _.where(loadedResult,{ category : "Camping Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Camping Tour"});
                 });
             });
         }
@@ -239,6 +251,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                 data.forEach(item =>{
                     loadedResult.push(item);
                     $scope.itineraries = _.where(loadedResult,{ category : "Trekking Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Trekking Tour"});
                 });
             });
         }
@@ -377,6 +390,23 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
     };
 
+    $scope.filterByDuration = function(){
+        var duration = $('#ddlDuration').val();
+        $scope.itineraries = _.filter($scope.globalStorage, function(obj) {
+            var durationArr = obj.duration.split(' ');
+            var nights =  parseInt(durationArr[0]);
+            var days =  parseInt(durationArr[3]);
+            if(duration == undefined || duration == '') 
+                return obj;
+            if(parseInt(duration) == 7 && days <= parseInt(duration)) 
+                return obj;
+            if(parseInt(duration) == 15 && nights >= 8 && days <= parseInt(duration)) 
+                return obj;
+            if(parseInt(duration) > 15 && days >= parseInt(duration)) 
+                return obj;
+        });
+    };
+
     $scope.isNumberKey = function(evt){
         var charCode = (evt.which) ? evt.which : event.keyCode
         if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -410,17 +440,6 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
             $('#adultCount').css({'border-color':'red'});
             return false;
         }
-        // if($('#phone').val() !='' || $scope.enquiry.phone != undefined){
-        //     var regEx = /^\+?\d{10}$/;
-        //     var isValidPh = regEx.test($scope.enquiry.phone);
-        //     if(!isValidPh){
-        //         $('#phone').focus();
-        //         $('#phone').val('');
-        //         $('#phone').css({'border-color':'red'});
-        //         return false;
-        //     }
-        //     return true;
-        // }
         else {
             var enquiry = { 
                 name: $scope.enquiry.fullname,
