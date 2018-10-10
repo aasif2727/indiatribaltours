@@ -121,7 +121,7 @@
                                     <option value="asc">Lowest hits</option>
                                     <option value="desc">Highest hits</option>
                                 </select>
-                                <select name="sort_price" id="state_mobileview" ng-change="filterByState()" ng-model="chkState">
+                                <select name="sort_price" id="state_mobileview" ng-change="filterByState()" ng-model="chkState" ng-hide="{{stateParam == 'all'}}">
                                     <option value="" selected>Filter By State</option>
                                     <option value="assam">Assam</option>
                                     <option value="arunachal">Arunachal</option>
@@ -143,7 +143,7 @@
                                     <option value="15">8-15 days</option>
                                     <option value="16">>15 days</option>
                                 </select>
-                                <select name="sort_rating" id="category_mobileview" ng-change="filterByCategory()" ng-model="chkCategory">
+                                <select name="sort_rating" id="category_mobileview" ng-change="filterByCategory()" ng-model="chkCategory" ng-hide="{{stateParam == 'all'}}">
                                     <option value="" selected>Filter By Category</option>
                                     <option value="adventure">Adventure</option>
                                     <option value="beach">Beach</option>
@@ -260,7 +260,7 @@
                                 <div>
                                     <span class="normal_duration">{{itinerary.duration}}</span>
                                     <p>
-                                        <a href="#/review/itinerary?state={{stateParam}}&category={{categoryParam == undefined?itinerary.package_type: categoryParam }}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1">Details</a>
+                                        <a href="#/review/itinerary?state={{stateParam == 'all'? itinerary.state : stateParam}}&category={{categoryParam == undefined?itinerary.package_type: categoryParam }}&title={{itinerary.package_code}}&code={{itinerary.code}}" class="btn_1">Details</a>
                                     </p>
                                 </div>
 

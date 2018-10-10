@@ -400,7 +400,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                 return obj;
             if(parseInt(duration) == 7 && days <= parseInt(duration)) 
                 return obj;
-            if(parseInt(duration) == 15 && nights >= 8 && days <= parseInt(duration)) 
+            if(parseInt(duration) == 15 && nights >= 7 && days <= parseInt(duration)) 
                 return obj;
             if(parseInt(duration) > 15 && days >= parseInt(duration)) 
                 return obj;
