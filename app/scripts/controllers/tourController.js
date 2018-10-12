@@ -224,7 +224,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'adventure'){
             var loadedResult = [];
-            var resultArray = indiaTourService.getSpecialTourPackage();
+            var resultArray = indiaTourService.getTourByCategory();
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
@@ -235,7 +235,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'camping'){
             var loadedResult = [];
-            var resultArray = indiaTourService.getSpecialTourPackage();
+            var resultArray = indiaTourService.getTourByCategory();
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
@@ -246,7 +246,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'trekking'){
             var loadedResult = [];
-            var resultArray = indiaTourService.getSpecialTourPackage();
+            var resultArray = indiaTourService.getTourByCategory();
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
@@ -281,7 +281,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         }
         if((_state != undefined && _state != null) && _state == 'all'){
             var loadedResult = [];
-            var resultArray = indiaTourService.getSpecialTourPackage('all');
+            var resultArray = indiaTourService.getTourByCategory('all');
             resultArray.$loaded().then(function(data){
                 data.forEach(item =>{
                     loadedResult.push(item);
