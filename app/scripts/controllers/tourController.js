@@ -255,6 +255,105 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                 });
             });
         }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'wildlife'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Wildlife Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Wildlife Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'heritage'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Heritage Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Heritage Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'cultural'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Cultural Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Cultural Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'tribal'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Tribal Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Tribal Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'city'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "City Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "City Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'temple'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Temple Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Temple Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'festival'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Festival Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Festival Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'craft'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Art & Craft Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Art & Craft Tour"});
+                });
+            });
+        }
+        if((_state != undefined && _state != null) && _state == 'all' && _category != undefined && _category == 'beach'){
+            var loadedResult = [];
+            var resultArray = indiaTourService.getTourByCategory();
+            resultArray.$loaded().then(function(data){
+                data.forEach(item =>{
+                    loadedResult.push(item);
+                    $scope.itineraries = _.where(loadedResult,{ category : "Beach Tour"});
+                    $scope.globalStorage = _.where(loadedResult,{ category : "Beach Tour"});
+                });
+            });
+        }
     };
 
     /*********Load Itinerary Count**************/
