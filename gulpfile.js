@@ -62,20 +62,6 @@ gulp.task('lint:scripts', function () {
     .pipe(lintScripts());
 });
 
-// gulp.task('index', function () {
-//   var target = gulp.src('./app/index.html');
-//   var sources = gulp.src([
-//     'node_modules/angular/angular.js', 
-//     'node_modules/angular-animate/angular-animate.js',
-//     'node_modules/angular-cookies/angular-cookies.js',
-//     'node_modules/angular-resource/angular-resource.js',
-//     'node_modules/angular-route/angular-route.js',
-//     'node_modules/angular-sanitize/angular-sanitize.js',
-//     'node_modules/angular-touch/angular-touch.js'
-//   ], {read: false}, {relative: true});
-//   return target.pipe(inject(sources)).pipe(gulp.dest('./app'));
-// });
-
 gulp.task('clean:tmp', function (cb) {
   rimraf('./.tmp', cb);
 });
