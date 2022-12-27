@@ -21,6 +21,10 @@ angular
       templateUrl: 'views/aboutusview.html',
       controller: 'homeController'
     })
+    .when('/gallery', {
+      templateUrl: 'views/photogallery.html',
+      controller: 'homeController'
+    })
     .when('/contactus', {
       templateUrl: 'views/contactus.html',
       controller: 'enquiryController'
