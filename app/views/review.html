@@ -5,8 +5,8 @@
 				<li><a href="/">Home</a>
 				</li>
 				<li>
-					<a ng-show="{{categoryParam != 'adventure' && categoryParam != 'camping' && categoryParam != 'trekking'}}" href="#/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(stateParam)}}</a>
-					<a ng-show="{{categoryParam == 'adventure' || categoryParam == 'camping' || categoryParam == 'trekking'}}" href="#/view/list?state=all&category={{categoryParam}}">{{util.camelCase(categoryParam)}}</a>
+					<a ng-show="{{categoryParam != 'adventure' && categoryParam != 'camping' && categoryParam != 'trekking'}}" href="/view/list?state={{stateParam}}&category={{categoryParam}}">{{util.camelCase(stateParam)}}</a>
+					<a ng-show="{{categoryParam == 'adventure' || categoryParam == 'camping' || categoryParam == 'trekking'}}" href="/view/list?state=all&category={{categoryParam}}">{{util.camelCase(categoryParam)}}</a>
                 </li>
 				<li>{{util.camelCase(itineraryDetail.title)}}</li>
 			</ul>

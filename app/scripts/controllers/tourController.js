@@ -387,6 +387,11 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
                     $scope.itineraryCount.trekking = _.where(loadedResult,{ category : "Trekking Tour"}).length;
                     $scope.itineraryCount.camping = _.where(loadedResult,{ category : "Camping Tour"}).length;
                     $scope.itineraryCount.adventure = _.where(loadedResult,{ category : "Adventure Tour"}).length;
+                    $scope.itineraryCount.temple = _.where(loadedResult,{ category : "Temple Tour"}).length;
+                    $scope.itineraryCount.heritage = _.where(loadedResult,{ category : "Heritage Tour"}).length;
+                    $scope.itineraryCount.craft = _.where(loadedResult,{ category : "Art & Craft Tour"}).length;
+                    $scope.itineraryCount.cultural = _.where(loadedResult,{ category : "Cultural Tour"}).length;
+                    $scope.itineraryCount.city = _.where(loadedResult,{ category : "City Tour"}).length;
                 });
             });    
         }
@@ -424,7 +429,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
         var _email = localStorage.getItem('email');
         var _signUpMode = localStorage.getItem('signUpMode');
         if(_email != undefined && (_signUpMode != undefined && _signUpMode == 'true') && $scope.stateParam != undefined){
-            var linkMap = "#/review/itinerary?state="+$scope.stateParam+"&category="+category+"&title="+itineraryTitle+"&code="+itineraryCode;
+            var linkMap = "/review/itinerary?state="+$scope.stateParam+"&category="+category+"&title="+itineraryTitle+"&code="+itineraryCode;
             var userSession = {
                 name: _email,
                 email: _email,
@@ -462,7 +467,7 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
     $scope.filterByState = function(){
         var selectedState = $('#state_mobileview').val();
         if(selectedState != ''){
-            window.location.href = '#/view/list?state=' + selectedState;
+            window.location.href = '/view/list?state=' + selectedState;
         }
     };
     if($scope.categoryParam != ''){
@@ -472,10 +477,10 @@ angular.module('indiaTours').controller("tourController", function ($scope,$loca
     $scope.filterByCategory = function(){
         var selectedCategory = $('#category_mobileview').val();
         if(selectedCategory != '' && $scope.stateParam != ''){
-            window.location.href = '#/view/list?state=' + $scope.stateParam + '&category=' + selectedCategory;
+            window.location.href = '/view/list?state=' + $scope.stateParam + '&category=' + selectedCategory;
         }
         if(selectedCategory == '' && $scope.stateParam != ''){
-            window.location.href = '#/view/list?state=' + $scope.stateParam;
+            window.location.href = '/view/list?state=' + $scope.stateParam;
         }
     };
 
